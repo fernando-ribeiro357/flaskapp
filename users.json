@@ -1,0 +1,4 @@
+{"_id":{"$oid":"667f49bcaa92a1c37029566e"},"name":"Oswaldo da Silva Gomes","password":"0sw4ld0","username":"oswaldo","email":"oswaldo@outrosite.xpto"}
+{"_id":{"$oid":"667f6b12860529b91cfde135"},"name":"Arminda Almeirinda","password":"senha-secreta","username":"arminda","email":"mindinha@outrosite.xpto"}
+{"_id":{"$oid":"6680f34021d6d3c5569d42cf"},"name":"Fernando Ribeiro","password":"senha-123","username":"fernando","email":"fernando@qqcoisa.xpto"}
+{"_id":{"$oid":"6682dfad22f47a1176b4e9ca"},"name":"Fulano Ciclano","password":"54321","username":"fulano","email":"fulano@meusite.xpto"}
