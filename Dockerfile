@@ -1,40 +1,25 @@
-# Multi Stage Building
-
-## Build #1 
-
-#1.1: preparar distro + instalação do python
-FROM python:3.11-alpine AS base 
-
-#1.2: instalar as dependências a nível de aplicação (pip)
+FROM python:3.11 
 
 COPY ./requirements.txt /tmp
+RUN pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    apt-get update && \
+    apt-get install -y gcc musl-dev linux-headers-amd64 make libexpat1-dev && \
+    pip install mod_wsgi-standalone && \
+    mkdir /opt/app
 
-RUN mkdir /install
+# COPY ./flaskapp /opt/app
+WORKDIR /opt/app
+RUN adduser -S -D -H -G www-data www-data
 
-WORKDIR /install 
+EXPOSE 8000
 
-RUN pip install --prefix=/install  -r /tmp/requirements.txt
-
-## Build #2
-
-FROM base  
-
-##2.1 copiar as dependências já preparadas
-
-COPY --from=base /install /usr/local
-
-# 2.2: copiar a aplicação para o contexto da imagem
-RUN mkdir /app
-
-COPY . /app/
-
-WORKDIR /app
-
-#2.3: configurar a porta de conexão da app (5000)
-EXPOSE 5000
-
-#2.4 definir variáveis de ambiente
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_APP=./
+ENV FLASK_RUN_PORT=8000
 ENV FLASK_ENV=development
 
-# 2.5: executar um comando para subir o server flask
-CMD flask run -h '0.0.0.0'
+CMD mod_wsgi-express start-server --processes 4 \
+                                  --user www-data --group www-data \
+                                  --host 0.0.0.0 \
+                                  --entry-point wsgi.py

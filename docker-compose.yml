@@ -1,10 +1,12 @@
 services:
-  auth_service:
-    image: "auth_service"
+  flaskapp:
+    build: .
     ports:
-      - 5000:5000
+      - 8000:8000
+    env_file:
+      - ./flaskapp/.env
     volumes:
-      - "$PWD:/app"
+      - ./flaskapp:/opt/app
 
   mongo-server:
     image: "mongo:latest"

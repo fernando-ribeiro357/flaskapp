@@ -1,5 +1,8 @@
 .venv
+venv
+env
 *pyc
+__pycache__
 .vscode
 Dockerfile
 docker-compose.yml

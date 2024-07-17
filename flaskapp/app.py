@@ -11,9 +11,9 @@ from api.auth import blueprint as auth
 from api.profile import blueprint as profile
 from frontend.views import blueprint as views
 
-logging.config.fileConfig('/var/www/wsgi/flaskapp/flaskapp/logging.ini')
+logging.config.fileConfig('logging.ini')
 
-load_dotenv('/var/www/wsgi/flaskapp/flaskapp/.env')
+load_dotenv()
 
 app = Flask(__name__)
 

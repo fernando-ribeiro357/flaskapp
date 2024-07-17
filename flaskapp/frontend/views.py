@@ -24,7 +24,7 @@ def login():
         }
         resposta = None
         try:
-            resposta = requests.post("http://flaskapp.local/api/v1/auth",
+            resposta = requests.post(f"{getenv('APP_URL')}/api/v1/auth",
                         json=payload)
             refresh_token = resposta.json()
             # { ACK: Bool, token: "aqui-evem-o-token" }            
@@ -54,20 +54,20 @@ def get_profile():
     # requisitar um token de acesso
     try:
         resposta_access = requests.get(
-            "http://flaskapp.local/api/v1/auth/get_access_token",
+            f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
             cookies=request.cookies)
         
         access_token = resposta_access.json()['token']
         
     # requisição para uma api que forneça os dados de profile
         resposta_profile = requests.post(
-            "http://flaskapp.local/api/v1/get_profile_data", 
+            f"{getenv('APP_URL')}/api/v1/get_profile_data", 
             headers={'Authorization': f'Bearer {access_token}'},
             json={'user_id': request.cookies.get('user_id')})
     
     # formatar os dados recebidos
         profile_data = resposta_profile.json()
-
+        
     except Exception as e:
         message = f'erro profile: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -77,11 +77,11 @@ def get_profile():
         })
     
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
+    
     return render_template('index.html',context=profile_data)
-    # renderizar a view
-
+    
 
 @blueprint.route("/outra_rota")
 @refresh_token_required
 def outra_rota():
-    return jsonify({'ACK': True, 'message': 'Outra área restrita'})
+    return jsonify({'ACK': True, 'message': 'Outra área restrita aqui'})
