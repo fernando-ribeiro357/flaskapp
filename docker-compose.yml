@@ -1,6 +1,6 @@
 services:
-  auth_service:
-    image: "auth_service"
+  flaskapp:
+    build: .
     ports:
       - 5000:5000
     volumes:
