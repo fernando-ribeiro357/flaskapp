@@ -1,7 +1,8 @@
 services:
   flaskapp:
-    build: .
+    # build: .
     # image: fernandoribeiro357/flaskapp:latest
+    image: fernandoribeiro357/flaskapp:slim
     restart: always
     ports:
       - 8000:8000
