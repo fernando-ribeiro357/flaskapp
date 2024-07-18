@@ -40,8 +40,7 @@ def auth():
     # validar dados
 
         credentialIsValid = username == user[0].get('username') and password == user[0].get('password')
-        
-        
+                
     except IndexError:
         current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
         return jsonify({

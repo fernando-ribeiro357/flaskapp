@@ -2,7 +2,7 @@ import datetime, logging.config
 from os import getenv
 from functools import wraps
 
-from flask import jsonify, redirect, request, current_app
+from flask import jsonify, redirect, request, current_app, make_response
 
 import jwt
 
@@ -39,7 +39,7 @@ def jwt_required(fn):
                 'message':message
             })
         except Exception as e:
-            message = f'erro: {e}'
+            message = f'erro jwt_required: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             return jsonify({
                 'ACK': False,
@@ -66,12 +66,10 @@ def refresh_token_required(fn):
             return redirect("/login")
 
         except Exception as e:
-            message = f'erro: {e}'
+            message = f'erro refresh_token_required: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
+            response = make_response(redirect("/"))
+            return response
         return fn(*args,**kwargs)
     return decoreted_function
 
@@ -88,7 +86,7 @@ def generate_access_token(user_id):
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: token de acesso gerado para {user_id}")
         return token_acesso
     except Exception as e:
-        message = f'erro: {e}'
+        message = f'erro generate_access_token: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return jsonify({
             'ACK': False,
@@ -108,7 +106,7 @@ def generate_refresh_token(user_id):
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: token de acesso gerado para {user_id}")
         return token_refresh
     except Exception as e:
-        message = f'erro: {e}'
+        message = f'erro generate_refresh_token: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return jsonify({
             'ACK': False,

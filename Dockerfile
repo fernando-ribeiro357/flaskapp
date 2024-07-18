@@ -2,14 +2,18 @@ FROM python:3.11
 
 COPY ./requirements.txt /tmp
 RUN pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
-    apt-get update && \
-    apt-get install -y gcc musl-dev linux-headers-amd64 make libexpat1-dev && \
-    pip install mod_wsgi-standalone && \
-    mkdir /opt/app
+    pip install -r /tmp/requirements.txt
 
-# COPY ./flaskapp /opt/app
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y gcc musl-dev linux-headers-amd64 make libexpat1-dev
+    
+RUN pip install mod_wsgi-standalone
+
+RUN mkdir /opt/app
+
 WORKDIR /opt/app
+
 RUN adduser -S -D -H -G www-data www-data
 
 EXPOSE 8000

@@ -33,10 +33,8 @@ def login():
         except Exception as e:
             message = f'erro login: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
+            response = make_response(redirect("/login"))
+            return response
         
         if refresh_token['ACK']:
             response = make_response(redirect("/profile"))
@@ -71,13 +69,10 @@ def get_profile():
     except Exception as e:
         message = f'erro profile: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        return jsonify({
-            'ACK': False,
-            'message':message
-        })
+        response = make_response(redirect("/"))
+        return response
     
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
-    
     return render_template('index.html',context=profile_data)
     
 

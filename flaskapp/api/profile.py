@@ -25,9 +25,11 @@ def get_profile_data():
         ]
     
     except Exception as e:
+        message = f"erro get_profile_data: {e}"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return jsonify({
             'ACK': False,
-            'message': e.__str__()
+            'message': message
         })
     
     return jsonify(profile_data[0])
