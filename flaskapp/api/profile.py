@@ -18,10 +18,11 @@ def get_profile_data():
         profile_data = [
             {
                 'full_name': u['name'],
+                'username': u['username'],
                 'profile': u['profile'],
                 'email': u['email'],
                 'registration_date': u['registration_date']
-            } for u in db.users.find({'email':user_id})
+            } for u in db.users.find({'username':user_id})
         ]
     
     except Exception as e:
@@ -34,3 +35,19 @@ def get_profile_data():
     
     return jsonify(profile_data[0])
 
+
+@blueprint.route("/insert_profile", methods = ["POST"])
+@jwt_required
+def insert_profile():
+
+    db = get_conn('pessoa')
+
+    user = dict(request.json)
+    count_users = db.users.count_documents({'username': user.get('username')})
+    count_email = db.users.count_documents({'email': user.get('email')})
+    if count_users > 0 or count_email > 0:
+        return jsonify({'NOK': 'O nome de login ou e-mail já foi utilizados'}), 400
+
+    db.users.insert_one(user)
+
+    return jsonify({'ACK':'Usuário inserido com sucesso','usuário':dict(request.json)})

@@ -32,9 +32,9 @@ def auth():
     try:
         user = [
             {
-                'username': u.get('email'),
+                'username': u.get('username'),
                 'password': u.get('password')
-            } for u in db.users.find({'email': username})
+            } for u in db.users.find({'username': username})
         ]
 
     # validar dados
