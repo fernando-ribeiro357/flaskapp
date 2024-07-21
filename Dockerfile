@@ -1,4 +1,3 @@
-# FROM python:3.11
 FROM python:3.11-slim
 
 COPY ./requirements.txt /tmp
@@ -12,9 +11,6 @@ RUN apt-get update && \
 RUN pip install mod_wsgi-standalone
 
 RUN mkdir /opt/app
-
-# Copiando aplicação para o container
-# COPY ./flaskapp /opt/app
 
 WORKDIR /opt/app
 
