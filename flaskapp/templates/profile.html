@@ -1,14 +1,21 @@
-{% macro profile(context)  %}
-<table class="table">
+{% extends "base-app.html"  %}
+{% from "navbar.html" import navbar  %}
+
+{% block navbar %}
+	{{navbar()}}
+{% endblock  %}
+
+{% block content %}
+<table class="table table-bordered table-striped">
 	<thead>
-	  <tr>
+	  <tr class="table-secondary">
 		<th scope="col" colspan="2">Informações do Usuário</th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr>
 		<th scope="row">Nome completo</th>
-		<td>{{context.full_name}}</td>
+		<td>{{context.name}}</td>
 	  </tr>
 	  <tr>
 		<th scope="row">Login</th>
@@ -28,4 +35,4 @@
 	  </tr>
 	</tbody>
 </table>
-{% endmacro %}
+{% endblock  %}

@@ -1,16 +1,77 @@
 import datetime, logging.config
 from os import getenv
 from functools import wraps
+from .db import get_conn
 
 from flask import jsonify, redirect, request, current_app, make_response
 
 import jwt
 
+def sysadmin_required(fn):
+    @wraps(fn)
+    def sysadmin_required_wrap(*args, **kwargs):
+        user_id = request.cookies.get('user_id')
+        if user_id == None:
+            message = 'user_id "None": Usuário não logado'
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            # response = make_response(redirect("/login"))
+            # return response
+            return jsonify({
+                'ACK': False,
+                'message':message
+            })
+        try:
+
+            # busca usuario no banco e verifica se possui perfil "sysadmin"
+            db = get_conn('pessoa')
+            count_users = db.users.count_documents({'username': user_id})
+            if count_users == 0:
+                message = f'user_id: {user_id} Usuário não encontrado'
+                current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+                # response = make_response(redirect("/login"))
+                # return response
+                return jsonify({
+                    'ACK': False,
+                    'message':message
+                })
+            
+            user = db.users.find_one({'username': user_id})
+            if user['profile'] != 'sysadmin':
+                message = f"profile: {user['profile']} Usuário não possui perfil de sysadmin"
+                current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+                # response = make_response(redirect("/"))
+                # return response
+                return jsonify({
+                    'ACK': False,
+                    'message':message
+                })
+       
+        except Exception as e:
+            message = f"erro sysadmin_required: {e}"
+            current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            # response = make_response(redirect("/login"))
+            # return response
+            return jsonify({
+                'ACK': False,
+                'message':message
+            })
+
+        return fn(*args,**kwargs)
+    return sysadmin_required_wrap
+
 def jwt_required(fn):
     @wraps(fn)
     def wrapped(*args, **kwargs):
-        token = request.headers.get('Authorization').split()[-1]
-
+        get_token = request.headers.get('Authorization')
+        if (get_token == None):
+            message = 'Token Nulo'
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            return jsonify({
+                'ACK': False,
+                'message':message
+            })
+        
+        token = get_token.split()[-1]
         try:
             jwt.decode(
                 token,

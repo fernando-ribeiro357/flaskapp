@@ -1,12 +1,39 @@
 import logging.config
 from flask import Blueprint, jsonify, request, current_app
 
-from extensions.token_utils import (jwt_required)
+from extensions.token_utils import (jwt_required, sysadmin_required)
 from extensions.db import get_conn
 
 blueprint = Blueprint('profile',
                       __name__,
                       url_prefix='/api/v1')
+
+
+@blueprint.route("/get_profiles")
+@jwt_required
+@sysadmin_required
+def get_profiles():
+    db = get_conn('pessoa')
+    try:
+        profiles_data = [
+            {
+                'name': u['name'],
+                'username': u['username'],
+                'profile': u['profile'],
+                'email': u['email'],
+                'registration_date': u['registration_date']
+            } for u in db.users.find()
+        ]
+    
+    except Exception as e:
+        message = f"erro get_profile_data: {e}"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        })
+    
+    return jsonify(profiles_data)
 
 @blueprint.route("/get_profile_data",methods=['POST'])
 @jwt_required
@@ -17,7 +44,7 @@ def get_profile_data():
     try:
         profile_data = [
             {
-                'full_name': u['name'],
+                'name': u['name'],
                 'username': u['username'],
                 'profile': u['profile'],
                 'email': u['email'],
@@ -36,8 +63,36 @@ def get_profile_data():
     return jsonify(profile_data[0])
 
 
+@blueprint.route("/update_profile", methods = ["PUT"])
+@jwt_required
+@sysadmin_required
+def update_profile():
+    db = get_conn('pessoa')
+
+    user = dict(request.json)
+    count_users = db.users.count_documents({'username': user.get('username')})
+    
+    if count_users != 1:
+        message='Usuário não encontrado.'
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        }), 400
+
+    db.users.update_one({'username': user.get('username')},{"$set": user})
+    message=f"Perfil do usuário {user.get('username')} alterado com sucesso"
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    return jsonify({
+        'ACK': True,
+        'message': message,
+        'usuário':dict(request.json)
+    })
+
+
 @blueprint.route("/insert_profile", methods = ["POST"])
 @jwt_required
+@sysadmin_required
 def insert_profile():
 
     db = get_conn('pessoa')
@@ -46,8 +101,18 @@ def insert_profile():
     count_users = db.users.count_documents({'username': user.get('username')})
     count_email = db.users.count_documents({'email': user.get('email')})
     if count_users > 0 or count_email > 0:
-        return jsonify({'NOK': 'O nome de login ou e-mail já foi utilizados'}), 400
+        message='O nome de login ou e-mail já foram utilizados'
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        }), 400
 
     db.users.insert_one(user)
-
-    return jsonify({'ACK':'Usuário inserido com sucesso','usuário':dict(request.json)})
+    message='Usuário inserido com sucesso'
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    return jsonify({
+        'ACK': True,
+        'message': message,
+        'usuário':dict(request.json)
+    })

@@ -22,24 +22,13 @@ app.register_blueprint(auth)
 app.register_blueprint(profile)
 app.register_blueprint(views)
 
-
-@app.route("/")
-def index():
-    return ''' 
-    <h1>Index</h1>
-    <ul>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/profile">Perfil</a></li>
-    </ul>
-    '''
-
 @app.route("/teste_login")
 def teste_login():
     return render_template('login.html')
 
 @app.route("/teste_profile")
 def teste_profile():
-    return render_template('index.html')
+    return render_template('profile.html')
 
 
 if __name__ == '__main__':
