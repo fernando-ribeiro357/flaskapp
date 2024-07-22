@@ -6,17 +6,16 @@
 {% endblock %}
 
 {% block content %}
+<h3>Lista de Usuários</h3>
 <table class="table table-bordered table-striped">
-	<thead>
-		<tr class="table-secondary">
-			<th scope="col" colspan="6">Lista de Usuários</th>
-		</tr>
+	<thead>		
 		<tr>
 			<th scope="col" colspan="2">Nome Completo</th>
 			<th scope="col">Login</th>
 			<th scope="col">Perfil</th>
 			<th scope="col">E-mail</th>
-			<th scope="col">Data de Registro</th>
+			<th scope="col">Criado em</th>
+			<th scope="col">Alterado em</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,6 +35,7 @@
 			<td>{{user.profile}}</td>
 			<td>{{user.email}}</td>
 			<td>{{user.registration_date}}</td>
+			<td>{{user.update_date}}</td>
 		</tr>
 		{% endfor %}
 	</tbody>

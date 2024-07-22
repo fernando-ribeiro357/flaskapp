@@ -173,7 +173,8 @@ def profile_insert():
                 'email': request.form.get('email'),
                 'password': request.form.get('password'),
                 'profile': 'user',
-                'registration_date': date.strftime("%Y-%m-%d %H:%M:%S")
+                'registration_date': date.strftime("%Y-%m-%d %H:%M:%S"),
+                'update_date': None
             }
 
             # requisição para uma api que forneça os dados de profile
@@ -194,7 +195,7 @@ def profile_insert():
             return response
         
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: Inseriu perfil {profile_data}")
-        response = make_response(redirect("/"))
+        response = make_response(redirect("/profiles"))
         return response
         # return jsonify(profile_data)
 

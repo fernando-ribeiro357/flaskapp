@@ -14,11 +14,14 @@ RUN pip install mod_wsgi-standalone
 RUN mkdir /opt/app
 
 #  Copiando aplicação
-# COPY ./flaskapp /opt/app
+COPY ./flaskapp /opt/app
+
+RUN adduser -S -D -H -G www-data www-data
+
+RUN chown -R www-data:www-data /opt/app/logs/
 
 WORKDIR /opt/app
 
-RUN adduser -S -D -H -G www-data www-data
 
 EXPOSE 8000
 

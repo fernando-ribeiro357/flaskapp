@@ -21,7 +21,8 @@ def get_profiles():
                 'username': u['username'],
                 'profile': u['profile'],
                 'email': u['email'],
-                'registration_date': u['registration_date']
+                'registration_date': u['registration_date'],
+                'update_date': u['update_date']
             } for u in db.users.find()
         ]
     
@@ -48,7 +49,8 @@ def get_profile_data():
                 'username': u['username'],
                 'profile': u['profile'],
                 'email': u['email'],
-                'registration_date': u['registration_date']
+                'registration_date': u['registration_date'],
+                'update_date': u['update_date']
             } for u in db.users.find({'username':user_id})
         ]
     
