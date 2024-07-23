@@ -3,7 +3,8 @@ from flask import Blueprint, jsonify, request, current_app
 
 from extensions.token_utils import (refresh_token_required,
                                     generate_access_token,
-                                    generate_refresh_token)
+                                    generate_refresh_token,
+                                    decode_refresh_token)
 from extensions.db import get_conn
 
 blueprint = Blueprint(
@@ -15,8 +16,23 @@ blueprint = Blueprint(
 @blueprint.route("/auth/get_access_token")
 @refresh_token_required
 def get_access_token():
+    get_token = request.headers.get('Authorization')
+    token = get_token.split()[-1]
+    decoded = decode_refresh_token(token)
+    decoded_json = decoded.json
+
+    if decoded_json.get('ACK') == False:        
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
+        return jsonify({
+            'ACK': False,
+            'message':message
+        })
+    
+    payload = decoded_json.get('payload')
+
     return jsonify({
-        'token': generate_access_token(request.cookies.get('user_id'))
+        'ACK': True,
+        'token': generate_access_token(payload.get('user_id'))
     })
 
 

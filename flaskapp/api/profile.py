@@ -34,7 +34,10 @@ def get_profiles():
             'message': message
         })
     
-    return jsonify(profiles_data)
+    return jsonify({
+        'ACK': True,
+        'data': profiles_data
+    })
 
 @blueprint.route("/get_profile_data",methods=['POST'])
 @jwt_required
