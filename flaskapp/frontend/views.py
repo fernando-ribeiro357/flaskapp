@@ -173,8 +173,8 @@ def profile_insert():
                 'email': request.form.get('email'),
                 'password': request.form.get('password'),
                 'profile': 'user',
-                'registration_date': date.strftime("%Y-%m-%d %H:%M:%S"),
-                'update_date': None
+                'created_at': date.strftime("%Y-%m-%d %H:%M:%S"),
+                'updated_at': None
             }
 
             # requisição para uma api que forneça os dados de profile
@@ -221,7 +221,7 @@ def profile_update():
                 'name': request.form.get('name'),
                 'username': request.form.get('username'),
                 'profile': request.form.get('profile'),
-                'update_date': date.strftime("%Y-%m-%d %H:%M:%S")
+                'updated_at': date.strftime("%Y-%m-%d %H:%M:%S")
             }
             passwd = request.form.get('password')
             if passwd != "":
