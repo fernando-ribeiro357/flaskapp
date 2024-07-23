@@ -1,7 +1,7 @@
 import logging.config
 from flask import Blueprint, jsonify, request, current_app
 
-from extensions.token_utils import (jwt_required, sysadmin_required)
+from extensions.token_utils import (access_token_required, sysadmin_required)
 from extensions.db import get_conn
 
 blueprint = Blueprint('profile',
@@ -10,7 +10,7 @@ blueprint = Blueprint('profile',
 
 
 @blueprint.route("/get_profiles")
-@jwt_required
+@access_token_required
 @sysadmin_required
 def get_profiles():
     db = get_conn('pessoa')
@@ -40,7 +40,7 @@ def get_profiles():
     })
 
 @blueprint.route("/get_profile_data",methods=['POST'])
-@jwt_required
+@access_token_required
 def get_profile_data():
     db = get_conn('pessoa')
     user_id = request.json.get('user_id')
@@ -69,7 +69,7 @@ def get_profile_data():
 
 
 @blueprint.route("/update_profile", methods = ["PUT"])
-@jwt_required
+@access_token_required
 @sysadmin_required
 def update_profile():
     db = get_conn('pessoa')
@@ -96,7 +96,7 @@ def update_profile():
 
 
 @blueprint.route("/insert_profile", methods = ["POST"])
-@jwt_required
+@access_token_required
 @sysadmin_required
 def insert_profile():
 

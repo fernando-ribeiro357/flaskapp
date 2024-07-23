@@ -21,7 +21,7 @@ def get_access_token():
     decoded = decode_refresh_token(token)
     decoded_json = decoded.json
     
-    if decoded_json.get('ACK') == False:        
+    if decoded_json.get('ACK') == False: 
         current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
         return jsonify({
             'ACK': False,

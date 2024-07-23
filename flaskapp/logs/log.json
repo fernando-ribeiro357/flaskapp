@@ -849,3 +849,64 @@
 {"asctime": "2024-07-23 18:56:10,472", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
 {"asctime": "2024-07-23 18:56:10,473", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 18:56:10] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
 {"asctime": "2024-07-23 18:56:10,556", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 18:56:10] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-23 19:20:58,470", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:20:58,552", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:20:58,792", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:20:58,793", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:23:06,621", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:23:06,713", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:23:06,955", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:23:06,956", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:23:11,991", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:23:12,075", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:23:12,318", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:23:12,318", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:24:22,808", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-23 19:24:22,940", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:24:23,252", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:24:23,253", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:25:45,778", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:25:45,908", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:25:46,168", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:25:46,169", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:26:21,404", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-23 19:26:21,525", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:26:21,780", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:26:21,781", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:29:09,842", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:29:09,980", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:29:10,226", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:29:10,226", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:29:58,567", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:29:58,680", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:29:58,937", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:29:58,938", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:34:06,590", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-23 19:34:06,679", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:34:06,946", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:34:06,946", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:38:28,658", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:38:28,728", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:38:28,981", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:38:28,982", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:38:44,828", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: tarsila realizou login com sucesso"}
+{"asctime": "2024-07-23 19:38:44,829", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
+{"asctime": "2024-07-23 19:38:44,829", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 19:38:44] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-23 19:38:53,215", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 19:38:53] \"\u001b[35m\u001b[1mGET /api/v1/auth/get_access_token HTTP/1.1\u001b[0m\" 500 -"}
+{"asctime": "2024-07-23 19:38:53,270", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: Token Nulo"}
+{"asctime": "2024-07-23 19:38:53,271", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 19:38:53] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-23 19:40:07,630", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:40:07,716", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:40:07,961", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:40:07,962", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:41:37,529", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:41:37,643", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:41:37,895", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:41:37,896", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-23 19:41:43,115", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
+{"asctime": "2024-07-23 19:41:43,115", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 19:41:43] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-23 19:41:43,207", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [23/Jul/2024 19:41:43] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-23 19:44:02,764", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-23 19:44:02,872", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-23 19:44:03,113", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-23 19:44:03,114", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
