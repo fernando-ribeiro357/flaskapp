@@ -1,1 +1,24 @@
-[{"_id":{"$oid":"669819ad483e5fac527ea981"},"name":"Fernando Ribeiro","password":"senha123","profile":"sysadmin","username":"fernando","email":"fernando@flaskapp.local","created_at":{"$date":"2024-07-17T19:57:04.491Z"}},{"_id":{"$oid":"6699862a4c92fdd9f29451ef"},"name":"Oswaldo Gomes","password":"senha123","profile":"user","username":"oswaldo","email":"oswaldo@flaskapp.local","created_at":{"$date":"2024-07-18T21:16:26.602Z"}}]
+db = connect('mongodb://localhost/pessoa');
+
+db.users.insertMany([
+    {
+        "name":"Fernando Ribeiro",
+        "password":"senha123",
+        "profile":"sysadmin",
+        "username":"fernando",
+        "email":"fernando@flaskapp.local",
+        "created_at": ISODate(),
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "name":"Oswaldo Gomes",
+        "password":"senha123",
+        "profile":"user",
+        "username":"oswaldo",
+        "email":"oswaldo@flaskapp.local",
+        "created_at": ISODate(),
+        "updated_at": null,
+        "deleted_at": null
+    }
+]);
