@@ -1,7 +1,7 @@
 import logging.config
 from flask import Blueprint, jsonify, request, current_app
 
-from extensions.token_utils import (access_token_required, sysadmin_required)
+from extensions.token_utils import (access_token_required, sysadmin_required, decode_access_token)
 from extensions.db import get_conn
 
 blueprint = Blueprint('profile',
@@ -22,7 +22,8 @@ def get_profiles():
                 'profile': u['profile'],
                 'email': u['email'],
                 'created_at': u['created_at'],
-                'updated_at': u['updated_at']
+                'updated_at': u['updated_at'],
+                'deleted_at': u['deleted_at']
             } for u in db.users.find({'deleted_at': None})
         ]
     
@@ -39,13 +40,28 @@ def get_profiles():
         'data': profiles_data
     })
 
-@blueprint.route("/get_profile_data",methods=['POST'])
+@blueprint.route("/get_profile_data")
 @access_token_required
 def get_profile_data():
-    db = get_conn('pessoa')
-    user_id = request.json.get('user_id')
+    # # Busca o user_id no access_token
+    # get_token = request.headers.get('Authorization')
+    # token = get_token.split()[-1]
+    # decoded = decode_access_token(token)
+    # decoded_json = decoded.json
+    
+    # if decoded_json.get('ACK') == False: 
+    #     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
+    #     return jsonify({
+    #         'ACK': False,
+    #         'message':message
+    #     })
+    # payload = decoded_json.get('payload')
+    # user_id = payload.get('user_id')
 
+    user_id = request.cookies.get('user_id')
+        
     try:
+        db = get_conn('pessoa')
         profile_data = [
             {
                 'name': u['name'],
@@ -64,8 +80,11 @@ def get_profile_data():
             'ACK': False,
             'message': message
         })
-    
-    return jsonify(profile_data[0])
+        
+    return jsonify({
+        'ACK': True,
+        'data': profile_data
+    })
 
 
 @blueprint.route("/update_profile", methods = ["PUT"])

@@ -1,4 +1,3 @@
-# FROM python:3.11
 FROM python:3.11-slim
 
 COPY ./requirements.txt /tmp
@@ -21,7 +20,6 @@ RUN adduser -S -D -H -G www-data www-data
 RUN chown -R www-data:www-data /opt/app/logs/
 
 WORKDIR /opt/app
-
 
 EXPOSE 8000
 

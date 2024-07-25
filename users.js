@@ -7,7 +7,7 @@ db.users.insertMany([
         "profile":"sysadmin",
         "username":"fernando",
         "email":"fernando@flaskapp.local",
-        "created_at": ISODate(),
+        "created_at": new Date(),
         "updated_at": null,
         "deleted_at": null
     },
@@ -17,7 +17,17 @@ db.users.insertMany([
         "profile":"user",
         "username":"oswaldo",
         "email":"oswaldo@flaskapp.local",
-        "created_at": ISODate(),
+        "created_at": new Date(),
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "name":"Arminda Almeirinda",
+        "password":"senha123",
+        "profile":"user",
+        "username":"arminda",
+        "email":"arminda@flaskapp.local",
+        "created_at": new Date(),
         "updated_at": null,
         "deleted_at": null
     }

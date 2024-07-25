@@ -910,3 +910,311 @@
 {"asctime": "2024-07-23 19:44:02,872", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
 {"asctime": "2024-07-23 19:44:03,113", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
 {"asctime": "2024-07-23 19:44:03,114", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-25 02:09:13,547", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8000\n * Running on http://172.18.0.4:8000"}
+{"asctime": "2024-07-25 02:09:13,547", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2024-07-25 02:09:13,550", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:09:13,774", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:09:13,774", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:09:25,472", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:09:25] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:09:25,555", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:09:25] \"\u001b[33mGET /favicon.ico HTTP/1.1\u001b[0m\" 404 -"}
+{"asctime": "2024-07-25 02:09:27,804", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:09:27] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:10:17,572", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
+{"asctime": "2024-07-25 02:10:17,573", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:10:17] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:10:47,805", "name": "app", "levelname": "CRITICAL", "message": "172.18.0.1 - extensions.token_utils: erro sysadmin_required: localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66a1b4096f1514534f9f0ea2, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>"}
+{"asctime": "2024-07-25 02:10:47,809", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:10:47] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:11:54,239", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
+{"asctime": "2024-07-25 02:11:54,239", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:11:54] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:12:24,434", "name": "app", "levelname": "CRITICAL", "message": "172.18.0.1 - extensions.token_utils: erro sysadmin_required: localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66a1b46a6f1514534f9f0ea3, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>"}
+{"asctime": "2024-07-25 02:12:24,437", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:12:24] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:12:50,815", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8000\n * Running on http://172.18.0.4:8000"}
+{"asctime": "2024-07-25 02:12:50,816", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2024-07-25 02:12:50,818", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:12:51,047", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:12:51,048", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:12:56,676", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para tarsila"}
+{"asctime": "2024-07-25 02:12:56,677", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:12:56] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:13:26,865", "name": "app", "levelname": "CRITICAL", "message": "172.18.0.1 - extensions.token_utils: erro sysadmin_required: localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66a1b4a8bab78d95ad74a8fd, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>"}
+{"asctime": "2024-07-25 02:13:26,869", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:13:26] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:14:21,098", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:14:21] \"\u001b[35m\u001b[1mPOST /api/v1/auth HTTP/1.1\u001b[0m\" 500 -"}
+{"asctime": "2024-07-25 02:16:07,725", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:16:07] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:16:50,467", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:16:50] \"\u001b[35m\u001b[1mPOST /api/v1/auth HTTP/1.1\u001b[0m\" 500 -"}
+{"asctime": "2024-07-25 02:18:08,118", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8000\n * Running on http://172.18.0.4:8000"}
+{"asctime": "2024-07-25 02:18:08,119", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2024-07-25 02:18:08,121", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:18:08,350", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:18:08,351", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:18:12,713", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - api.auth: Usu\u00e1rio ou senha inv\u00e1lidos"}
+{"asctime": "2024-07-25 02:18:12,714", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:18:12] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:18:23,328", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:18:23,329", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:18:23,330", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:18:23] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:20:40,365", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:20:40,366", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:20:40] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:20:40,479", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:20:40] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:21:20,314", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:21:20,314", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:21:20] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:21:20,408", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:21:20] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:26:54,148", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:26:54,149", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:26:54] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:26:54,230", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:26:54] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:27:26,888", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: oswaldo realizou login com sucesso"}
+{"asctime": "2024-07-25 02:27:26,889", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:27:26,890", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:27:26] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:27:38,571", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:27:38,571", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:27:38] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:27:38,625", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 02:27:38,626", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:27:38] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:29:18,202", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:29:18,203", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:29:18,203", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:29:18] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:30:10,419", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:30:10,420", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:30:10] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:30:10,498", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:30:10] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:30:50,394", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: oswaldo realizou login com sucesso"}
+{"asctime": "2024-07-25 02:30:50,394", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:30:50,395", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:30:50] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:31:56,842", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:31:56,842", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:31:56] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:31:56,918", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:31:56] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:38:24,941", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-25 02:38:25,026", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:38:25,270", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:38:25,270", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:38:45,420", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:38:45,421", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:38:45,428", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:38:45] \"\u001b[35m\u001b[1mPOST /api/v1/auth HTTP/1.1\u001b[0m\" 500 -"}
+{"asctime": "2024-07-25 02:40:26,071", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-25 02:40:26,618", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:40:26,893", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:40:26,894", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:40:35,393", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:40:35,393", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:40:35,394", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:40:35] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:44:22,523", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/extensions/token_utils.py', reloading"}
+{"asctime": "2024-07-25 02:44:22,610", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:44:22,861", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:44:22,862", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:48:54,658", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-25 02:48:54,786", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:48:55,047", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:48:55,048", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:49:10,969", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:49:10,969", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:49:10] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:49:37,697", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: Token Nulo"}
+{"asctime": "2024-07-25 02:49:37,698", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:49:37] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:50:02,060", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:50:02,060", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:50:02] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:50:41,627", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:50:41,628", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:50:41,629", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:50:41] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:51:12,130", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:51:12,130", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:51:12,131", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:51:12] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:51:27,379", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:51:27,380", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:51:27] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:51:59,875", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:51:59,876", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:51:59] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:51:59,957", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:51:59] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:52:38,564", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: oswaldo realizou login com sucesso"}
+{"asctime": "2024-07-25 02:52:38,564", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:52:38,566", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:52:38] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:52:43,893", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:52:43,893", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:52:43] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:52:43,949", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 02:52:43,950", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:52:43] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:02,655", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:53:02,655", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:53:02,656", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:02] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:23,578", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:53:23,578", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:23] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:23,678", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:23] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:33,080", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: oswaldo realizou login com sucesso"}
+{"asctime": "2024-07-25 02:53:33,080", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:53:33,082", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:33] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:56,769", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 02:53:56,770", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:56] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:53:56,813", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 02:53:56,814", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:53:56] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:55:21,124", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 02:55:21,124", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:55:21,125", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:55:21] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:55:25,083", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:55:25,084", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:55:25] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:55:25,158", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:55:25] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:56:07,193", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:56:07,193", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:56:07] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:56:07,290", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:56:07] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:58:47,665", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-25 02:58:47,746", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 02:58:47,986", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 02:58:47,987", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 02:58:54,500", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 02:58:54,501", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:58:54] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 02:58:54,591", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 02:58:54] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:02:13,342", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:02:13,343", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:02:13] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:02:13,433", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:02:13] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:05:48,231", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:05:48,231", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:05:48] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:05:48,317", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:05:48] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:06:04,923", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:06:04,924", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:06:04] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:06:05,019", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:06:05] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:07:09,775", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8000\n * Running on http://172.18.0.3:8000"}
+{"asctime": "2024-07-25 03:07:09,775", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2024-07-25 03:07:09,778", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:07:10,011", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:07:10,012", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 205-170-820"}
+{"asctime": "2024-07-25 03:07:20,782", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:07:20,783", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:07:20] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:07:20,901", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:07:20] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:20:58,999", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:8000\n * Running on http://172.18.0.4:8000"}
+{"asctime": "2024-07-25 03:20:59,000", "name": "werkzeug", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2024-07-25 03:20:59,003", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:20:59,257", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:20:59,258", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:21:27,225", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:21:27,226", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:21:27] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:21:27,323", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:21:27] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:21:53,623", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:21:53,623", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:21:53] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:21:53,763", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:21:53] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:27:06,756", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 03:27:06,757", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:27:06,757", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:27:06] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:27:37,648", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:27:37,648", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:27:37] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:27:37,699", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:27:37] \"POST /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:28:09,323", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:28:09,323", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:28:09] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:28:09,397", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:28:09] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:28:57,229", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-25 03:28:57,316", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:28:57,559", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:28:57,560", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:29:08,181", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:29:08,182", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:29:08] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:29:08,242", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:29:08] \"POST /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:06,725", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:31:06,726", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:06] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:06,777", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:06] \"POST /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:38,749", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:31:38,749", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:38] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:38,827", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:38] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:48,117", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: arminda realizou login com sucesso"}
+{"asctime": "2024-07-25 03:31:48,118", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:31:48,119", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:48] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:51,762", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:31:51,762", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:51] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:31:51,810", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:31:51] \"POST /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:33:18,271", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/auth.py', reloading"}
+{"asctime": "2024-07-25 03:33:18,375", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:33:18,624", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:33:18,625", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:34:17,017", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-25 03:34:17,113", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:34:17,355", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:34:17,356", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:34:35,604", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:34:35,604", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:34:35] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:34:35,633", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:34:35] \"\u001b[35m\u001b[1mGET /api/v1/get_profile_data HTTP/1.1\u001b[0m\" 500 -"}
+{"asctime": "2024-07-25 03:36:08,049", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-25 03:36:08,133", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:36:08,368", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:36:08,369", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:36:12,360", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:36:12,360", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:36:12] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:36:12,427", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:36:12] \"GET /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:37:21,825", "name": "werkzeug", "levelname": "INFO", "message": " * Detected change in '/opt/app/api/profile.py', reloading"}
+{"asctime": "2024-07-25 03:37:21,915", "name": "werkzeug", "levelname": "INFO", "message": " * Restarting with stat"}
+{"asctime": "2024-07-25 03:37:22,181", "name": "werkzeug", "levelname": "WARNING", "message": " * Debugger is active!"}
+{"asctime": "2024-07-25 03:37:22,183", "name": "werkzeug", "levelname": "INFO", "message": " * Debugger PIN: 736-890-503"}
+{"asctime": "2024-07-25 03:37:29,151", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:37:29,151", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:37:29] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:37:29,211", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:37:29] \"GET /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:38:03,221", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para arminda"}
+{"asctime": "2024-07-25 03:38:03,222", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:38:03] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:38:03,271", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:38:03] \"GET /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:38:32,327", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: oswaldo realizou login com sucesso"}
+{"asctime": "2024-07-25 03:38:32,328", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:38:32,329", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:38:32] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:38:57,433", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:38:57,433", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:38:57] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:38:57,477", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:38:57] \"GET /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:39:18,284", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:39:18,284", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:39:18] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:39:18,325", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:39:18,326", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:39:18] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:40:29,497", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:40:29,497", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:40:29] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:40:29,544", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:40:29,544", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:40:29] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:40:41,339", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:40:41,340", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:40:41] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:40:41,382", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:40:41,383", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:40:41] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:42:41,146", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:42:41,147", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:42:41] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:42:41,193", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:42:41,194", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:42:41] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:43:05,358", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:43:05,358", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:43:05] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:43:05,409", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:43:05,409", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:43:05] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:43:30,521", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:43:30,522", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:43:30] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:43:30,569", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:43:30,570", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:43:30] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:00,506", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:44:00,506", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:00] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:00,555", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:44:00,556", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:00] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:27,780", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:44:27,781", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:27] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:27,825", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:44:27,826", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:27] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:35,976", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:44:35,977", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:35] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:36,023", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:44:36,024", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:36] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:47,242", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:44:47,242", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:47] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:47,299", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:44:47,299", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:47] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:55,180", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:44:55,181", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:55] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:44:55,227", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:44:55,228", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:44:55] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:45:13,777", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:45:13,777", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:45:13] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:45:13,826", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:45:13,827", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:45:13] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:02,752", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:46:02,753", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:02] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:02,800", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:46:02,801", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:02] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:15,867", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:46:15,868", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:15] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:15,913", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:46:15,913", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:15] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:24,056", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:46:24,056", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:24] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:24,108", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:46:24,109", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:24] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:39,959", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:46:39,959", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:39] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:40,004", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:46:40,005", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:40] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:49,449", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para oswaldo"}
+{"asctime": "2024-07-25 03:46:49,449", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:49] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:46:49,495", "name": "app", "levelname": "WARNING", "message": "172.18.0.1 - extensions.token_utils: O(A) usu\u00e1rio(a) 'Oswaldo Gomes' n\u00e3o possui perfil de sysadmin. (profile: user)"}
+{"asctime": "2024-07-25 03:46:49,496", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:46:49] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:47:19,039", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - api.auth: fernando realizou login com sucesso"}
+{"asctime": "2024-07-25 03:47:19,040", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:47:19,040", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:47:19] \"POST /api/v1/auth HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:47:22,511", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:47:22,511", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:47:22] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:47:22,559", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:47:22] \"GET /api/v1/get_profile_data HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:47:26,598", "name": "app", "levelname": "INFO", "message": "172.18.0.1 - extensions.token_utils: token de acesso gerado para fernando"}
+{"asctime": "2024-07-25 03:47:26,599", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:47:26] \"GET /api/v1/auth/get_access_token HTTP/1.1\" 200 -"}
+{"asctime": "2024-07-25 03:47:26,674", "name": "werkzeug", "levelname": "INFO", "message": "172.18.0.1 - - [25/Jul/2024 03:47:26] \"GET /api/v1/get_profiles HTTP/1.1\" 200 -"}

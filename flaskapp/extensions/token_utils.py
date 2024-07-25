@@ -41,22 +41,39 @@ def sysadmin_required(fn):
     @wraps(fn)
     def sysadmin_required_wrap(*args, **kwargs):
 
-        get_token = request.headers.get('Authorization')
-        token = get_token.split()[-1]
-        decoded = decode_access_token(token)
-        decoded_json = decoded.json
+    # Busca o user_id no payload do access_token
+        # get_token = request.headers.get('Authorization')
+        # token = get_token.split()[-1]
+        # decoded = decode_access_token(token)
+        # decoded_json = decoded.json
 
-        if decoded_json.get('ACK') == False:
-            message = decoded_json.get('message')
-            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
+        # if decoded_json.get('ACK') == False:
+        #     message = decoded_json.get('message')
+        #     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
+        #     return jsonify({
+        #         'ACK': False,
+        #         'message':message
+        #     })
+    
+        # payload = decoded_json.get('payload')
+
+        # user_id = payload.get('user_id')
+
+
+    # Busca o user_id nos cookies
+        user_id = request.cookies.get('user_id')
+        if user_id == None:
+            message = 'user_id "None": Usuário não logado'
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            # response = make_response(redirect("/login"))
+            # return response
             return jsonify({
                 'ACK': False,
                 'message':message
             })
-    
-        payload = decoded_json.get('payload')
 
-        user_id = payload.get('user_id')
+
+
         if user_id == None:
             message = 'user_id "None": Usuário(a) não logado'
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")

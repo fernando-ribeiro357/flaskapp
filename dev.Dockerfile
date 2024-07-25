@@ -6,10 +6,6 @@ RUN pip install --upgrade pip && \
 
 RUN mkdir /opt/app
 
-## Em vez de copiar a aplicação, criar volume bind
-## ./flaskapp:/opt/app
-# COPY ./flaskapp /opt/app
-
 WORKDIR /opt/app
 
 EXPOSE 8000
