@@ -9,27 +9,24 @@ from flask import jsonify, request, current_app
 def user_has_profile(username, profile):
     
     try:
-        # busca usuario no banco e verifica se possui perfil "sysadmin"
+        # busca usuario no banco e verifica se possui perfil fornecido"
         db = get_conn('pessoa')    
-        user = db.users.find_one({'username': username})
+        user = db.users.find_one({'username': username, "profile": profile})
         if user == None:
-            message = f"Usuário(a) '{username}' não encontrado(a)"
+            message = f"Usuário(a) '{username}' não encontrado(a) ou não possui perfil '{profile}"
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             return False
         
-        if user['profile'] != profile:
-            message = f"Usuário(a) '{username}' não possui perfil '{profile}'"
-            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return False
+        else:
+            message = f"Usuário(a) '{username}' possui o perfil '{profile}'"
+            current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            return True
 
     except Exception as e:
         message = f"Erro user_has_profile: {e}"
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return False    
 
-    message = f"Usuário(a) '{username}' possui o perfil '{profile}'"
-    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    return True
 
 
 def sysadmin_owner_required(fn):
