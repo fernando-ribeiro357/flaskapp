@@ -21,7 +21,7 @@
 							"    // Caso a resposta seja 'ACK' = True (usuário e senha corretos), ",
 							"    // virá um token na resposta que é salvo na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"refresh_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"refresh_token\", jsonData.token);",
 							"});",
 							"",
 							""
@@ -46,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"arminda\",\n    \"password\": \"senha123\"\n}",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,15 +54,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/auth",
-					"protocol": "http",
+					"raw": "{{endpoint}}/auth",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"auth"
 					]
 				},
@@ -84,7 +80,7 @@
 							"        method: \"GET\",",
 							"        // utilizando o refresh_token obtido no login",
 							"        header: {",
-							"            \"Authorization\": \"Bearer \" + pm.environment.get(\"refresh_token\")",
+							"            \"Authorization\": \"Bearer \" + pm.collectionVariables.get(\"refresh_token\")",
 							"        }",
 							"    });",
 							"",
@@ -93,7 +89,7 @@
 							"",
 							"    // caso a resposta seja 'ACK' = True, salva o access_token na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"    ",
 							"",
 							"} catch (err) {",
@@ -108,11 +104,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// pm.test(\"access token clean\", function () {",
-							"//     var jsonData = pm.response.json();",
-							"//     pm.expect(jsonData.ACK).true;",
-							"//     pm.environment.unset(\"access_token\");",
-							"// });",
 							"var template = `",
 							"<style type=\"text/css\">",
 							"    *{",
@@ -185,15 +176,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/get_profile_data",
-					"protocol": "http",
+					"raw": "{{endpoint}}/get_profile_data",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"get_profile_data"
 					]
 				},
@@ -215,7 +202,7 @@
 							"        method: \"GET\",",
 							"        // utilizando o refresh_token obtido no login",
 							"        header: {",
-							"            \"Authorization\": \"Bearer \" + pm.environment.get(\"refresh_token\")",
+							"            \"Authorization\": \"Bearer \" + pm.collectionVariables.get(\"refresh_token\")",
 							"        }",
 							"    });",
 							"",
@@ -224,7 +211,7 @@
 							"",
 							"    // caso a resposta seja 'ACK' = True, salva o access_token na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"    ",
 							"",
 							"} catch (err) {",
@@ -239,11 +226,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// pm.test(\"access token clean\", function () {",
-							"//     var jsonData = pm.response.json();",
-							"//     pm.expect(jsonData.ACK).true;",
-							"//     pm.environment.unset(\"access_token\");",
-							"// });",
 							"var template = `",
 							"<style type=\"text/css\">",
 							"    *{",
@@ -316,15 +298,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/get_profiles",
-					"protocol": "http",
+					"raw": "{{endpoint}}/get_profiles",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"get_profiles"
 					]
 				},
@@ -346,7 +324,7 @@
 							"        method: \"GET\",",
 							"        // utilizando o refresh_token obtido no login",
 							"        header: {",
-							"            \"Authorization\": \"Bearer \" + pm.environment.get(\"refresh_token\")",
+							"            \"Authorization\": \"Bearer \" + pm.collectionVariables.get(\"refresh_token\")",
 							"        }",
 							"    });",
 							"",
@@ -355,7 +333,7 @@
 							"",
 							"    // caso a resposta seja 'ACK' = True, salva o access_token na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"    ",
 							"",
 							"} catch (err) {",
@@ -370,11 +348,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// pm.test(\"access token clean\", function () {",
-							"//     var jsonData = pm.response.json();",
-							"//     pm.expect(jsonData.ACK).true;",
-							"//     pm.environment.unset(\"access_token\");",
-							"// });",
 							"var template = `",
 							"<style type=\"text/css\">",
 							"    *{",
@@ -458,15 +431,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/insert_profile",
-					"protocol": "http",
+					"raw": "{{endpoint}}/insert_profile",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"insert_profile"
 					]
 				},
@@ -488,7 +457,7 @@
 							"        method: \"GET\",",
 							"        // utilizando o refresh_token obtido no login",
 							"        header: {",
-							"            \"Authorization\": \"Bearer \" + pm.environment.get(\"refresh_token\")",
+							"            \"Authorization\": \"Bearer \" + pm.collectionVariables.get(\"refresh_token\")",
 							"        }",
 							"    });",
 							"",
@@ -497,7 +466,7 @@
 							"",
 							"    // caso a resposta seja 'ACK' = True, salva o access_token na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"    ",
 							"",
 							"} catch (err) {",
@@ -512,11 +481,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// pm.test(\"access token clean\", function () {",
-							"//     var jsonData = pm.response.json();",
-							"//     pm.expect(jsonData.ACK).true;",
-							"//     pm.environment.unset(\"access_token\");",
-							"// });",
 							"var template = `",
 							"<style type=\"text/css\">",
 							"    *{",
@@ -600,15 +564,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/update_profile",
-					"protocol": "http",
+					"raw": "{{endpoint}}/update_profile",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"update_profile"
 					]
 				},
@@ -630,7 +590,7 @@
 							"        method: \"GET\",",
 							"        // utilizando o refresh_token obtido no login",
 							"        header: {",
-							"            \"Authorization\": \"Bearer \" + pm.environment.get(\"refresh_token\")",
+							"            \"Authorization\": \"Bearer \" + pm.collectionVariables.get(\"refresh_token\")",
 							"        }",
 							"    });",
 							"",
@@ -639,7 +599,7 @@
 							"",
 							"    // caso a resposta seja 'ACK' = True, salva o access_token na variável do environment (flaskapp)",
 							"    pm.expect(jsonData.ACK).true;",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"    ",
 							"",
 							"} catch (err) {",
@@ -654,11 +614,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// pm.test(\"access token clean\", function () {",
-							"//     var jsonData = pm.response.json();",
-							"//     pm.expect(jsonData.ACK).true;",
-							"//     pm.environment.unset(\"access_token\");",
-							"// });",
 							"var template = `",
 							"<style type=\"text/css\">",
 							"    *{",
@@ -742,15 +697,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/delete_profile",
-					"protocol": "http",
+					"raw": "{{endpoint}}/delete_profile",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"delete_profile"
 					]
 				},
@@ -777,9 +728,12 @@
 						"exec": [
 							"pm.test(\"auth access token\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.ACK).true;        ",
-							"       ",
-							"    pm.environment.set(\"access_token\", jsonData.token);",
+							"    ",
+							"    pm.expect(jsonData.ACK).true;",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
+							"",
+							"     pm.expect(jsonData.ACK).true;",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.token);",
 							"});"
 						],
 						"type": "text/javascript",
@@ -801,15 +755,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/auth/get_access_token",
-					"protocol": "http",
+					"raw": "{{endpoint}}/auth/get_access_token",
 					"host": [
-						"localhost"
+						"{{endpoint}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
-						"v1",
 						"auth",
 						"get_access_token"
 					]
@@ -842,6 +792,41 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "refresh_token",
+			"value": ""
+		},
+		{
+			"key": "endpoint",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "fernando",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "senha123",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "version",
+			"value": "1.0.0",
+			"type": "string"
+		},
+		{
+			"key": "tag",
+			"value": "develop",
+			"type": "string"
 		}
 	]
 }

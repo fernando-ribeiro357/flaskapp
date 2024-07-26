@@ -59,10 +59,8 @@ def auth():
         response = make_response(jsonify({
             'ACK': True,
             'token': refresh_token
-        }))
-        response.set_cookie(key='token', value=refresh_token, httponly=True)
-        response.set_cookie(key='user_id', value=username, httponly=True)
-        response.set_cookie(key='user_profile', value=user[0].get('profile'), httponly=True)
+        }))        
+        response.set_cookie(key='user_id', value=username, httponly=True)        
         return response
         
     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
