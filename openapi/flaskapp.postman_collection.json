@@ -54,17 +54,51 @@
 					}
 				},
 				"url": {
-					"raw": "{{endpoint}}/auth",
+					"raw": "{{endpoint}}/api/v1/auth",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"auth"
 					]
 				},
 				"description": "Autenticação do usuário. Retorna o refresh_token."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "auth_refresh_token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/v1/auth",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "get_profile_data",
@@ -176,17 +210,42 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{endpoint}}/get_profile_data",
+					"raw": "{{endpoint}}/api/v1/get_profile_data",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"get_profile_data"
 					]
 				},
 				"description": "Busca o perfil do usuário logado, solicitando um access_token antes da requisição."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "get_profile_data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/v1/get_profile_data",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"get_profile_data"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "get_profiles",
@@ -298,11 +357,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{endpoint}}/get_profiles",
+					"raw": "{{endpoint}}/api/v1/get_profiles",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"get_profiles"
 					]
 				},
@@ -431,17 +492,51 @@
 					}
 				},
 				"url": {
-					"raw": "{{endpoint}}/insert_profile",
+					"raw": "{{endpoint}}/api/v1/insert_profile",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"insert_profile"
 					]
 				},
 				"description": "Insere um novo perfi de usuário (profile: user), solicitando um access_token antes da requisição.\n\nSomente os usuários com perfil administrativo (profile: sysadmin) podem executar essa ação."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "insert_profile",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fulano Ciclano\",\n    \"username\": \"fulano\",\n    \"password\": \"senha123\",\n    \"profile\": \"sysadmin\",\n    \"email\": \"fulano@flaskapp.local\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/v1/insert_profile",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"insert_profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "update_profile",
@@ -564,17 +659,51 @@
 					}
 				},
 				"url": {
-					"raw": "{{endpoint}}/update_profile",
+					"raw": "{{endpoint}}/api/v1/update_profile",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"update_profile"
 					]
 				},
 				"description": "Atualiza os dados de um perfil (created_at: None), solicitando um access_token antes da requisição.\n\nSomente os usuários com perfil administrativo (profile: sysadmin) ou o dono do perfil a ser alterado podem executar essa ação.\n\nO campo 'username' não pode ser alterado.\n\nSomente os usuários com perfil administrativo podem alterar o campo 'profile', exceto o seu próprio perfil."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "update_profile",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"name\": \"Fulano Silva Ciclano\",\n    \"profile\": \"user\",\n    \"username\": \"fulano\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/v1/update_profile",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"update_profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "delete_profile",
@@ -697,17 +826,51 @@
 					}
 				},
 				"url": {
-					"raw": "{{endpoint}}/delete_profile",
+					"raw": "{{endpoint}}/api/v1/delete_profile",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"delete_profile"
 					]
 				},
 				"description": "Exclui um perfil (deleted_at: datetime.utcnow()), solicitando um access_token antes da requisição.\n\nSomente os usuários com perfil administrativo (profile: sysadmin) podem executar essa ação.\n\nUm usuário não pode excluir o próprio perfil."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "delete_profile",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"fulano\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/v1/delete_profile",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delete_profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "auth_access_token",
@@ -755,18 +918,44 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{endpoint}}/auth/get_access_token",
+					"raw": "{{endpoint}}/api/v1/auth/get_access_token",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
+						"api",
+						"v1",
 						"auth",
 						"get_access_token"
 					]
 				},
 				"description": "Solicita um access_token, fornecendo um refresh_token, para realizar as operações CRUD na API."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "auth_access_token",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/v1/auth/get_access_token",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"get_access_token"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		}
 	],
 	"auth": {
@@ -801,7 +990,7 @@
 		},
 		{
 			"key": "endpoint",
-			"value": "http://localhost:8000/api/v1",
+			"value": "http://localhost:8000",
 			"type": "string"
 		},
 		{
@@ -820,7 +1009,7 @@
 		},
 		{
 			"key": "version",
-			"value": "1.0.0",
+			"value": "v2.1",
 			"type": "string"
 		},
 		{
