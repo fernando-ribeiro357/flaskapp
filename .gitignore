@@ -1,5 +1,5 @@
 .env
-logs/*.json
+log.json
 *.pyc
 venv/
 .venv/

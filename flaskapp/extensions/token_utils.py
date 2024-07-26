@@ -7,12 +7,6 @@ from flask import jsonify, request, current_app
 
 import jwt
 
-def decode_refresh_token(refresh_token):
-    return decode_token(refresh_token, getenv('JWT_REFRESH_SECRET'))
-
-def decode_access_token(access_token):
-     return decode_token(access_token, getenv('JWT_SECRET'))
-
 def access_token_required(fn):
     @wraps(fn)
     def wrapped(*args, **kwargs):
@@ -36,84 +30,6 @@ def refresh_token_required(fn):
 
         return fn(*args,**kwargs)
     return wrapped
-
-def sysadmin_required(fn):
-    @wraps(fn)
-    def sysadmin_required_wrap(*args, **kwargs):
-
-    # Busca o user_id no payload do access_token
-        # get_token = request.headers.get('Authorization')
-        # token = get_token.split()[-1]
-        # decoded = decode_access_token(token)
-        # decoded_json = decoded.json
-
-        # if decoded_json.get('ACK') == False:
-        #     message = decoded_json.get('message')
-        #     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
-        #     return jsonify({
-        #         'ACK': False,
-        #         'message':message
-        #     })
-    
-        # payload = decoded_json.get('payload')
-
-        # user_id = payload.get('user_id')
-
-
-    # Busca o user_id nos cookies
-        user_id = request.cookies.get('user_id')
-        if user_id == None:
-            message = 'user_id "None": Usuário não logado'
-            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            # response = make_response(redirect("/login"))
-            # return response
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
-
-
-
-        if user_id == None:
-            message = 'user_id "None": Usuário(a) não logado'
-            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
-        try:
-
-            # busca usuario no banco e verifica se possui perfil "sysadmin"
-            db = get_conn('pessoa')
-            count_users = db.users.count_documents({'username': user_id})
-            if count_users == 0:
-                message = f'user_id: {user_id} Usuário(a) não encontrado'
-                current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-                return jsonify({
-                    'ACK': False,
-                    'message':message
-                })
-            
-            user = db.users.find_one({'username': user_id})
-            if user['profile'] != 'sysadmin':
-                message = f"O(A) usuário(a) '{user['name']}' não possui perfil de sysadmin. (profile: {user['profile']})"
-                current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-                return jsonify({
-                    'ACK': False,
-                    'message':message
-                })
-       
-        except Exception as e:
-            message = f"erro sysadmin_required: {e}"
-            current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
-
-        return fn(*args,**kwargs)
-    return sysadmin_required_wrap
-
 
 def jwt_required(jwt_secret):    
     get_token = request.headers.get('Authorization')

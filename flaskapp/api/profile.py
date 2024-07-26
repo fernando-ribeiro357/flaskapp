@@ -1,7 +1,10 @@
 import logging.config
+from datetime import datetime
+
 from flask import Blueprint, jsonify, request, current_app
 
-from extensions.token_utils import (access_token_required, sysadmin_required, decode_access_token)
+from extensions.token_utils import (access_token_required)
+from extensions.access_control import (sysadmin_required, sysadmin_owner_required, user_has_profile)
 from extensions.db import get_conn
 
 blueprint = Blueprint('profile',
@@ -37,28 +40,23 @@ def get_profiles():
     
     return jsonify({
         'ACK': True,
+        'message': 'Perfis buscados com sucesso',
         'data': profiles_data
     })
 
 @blueprint.route("/get_profile_data")
 @access_token_required
 def get_profile_data():
-    # # Busca o user_id no access_token
-    # get_token = request.headers.get('Authorization')
-    # token = get_token.split()[-1]
-    # decoded = decode_access_token(token)
-    # decoded_json = decoded.json
-    
-    # if decoded_json.get('ACK') == False: 
-    #     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {decoded_json.get('message')}")
-    #     return jsonify({
-    #         'ACK': False,
-    #         'message':message
-    #     })
-    # payload = decoded_json.get('payload')
-    # user_id = payload.get('user_id')
 
     user_id = request.cookies.get('user_id')
+
+    if user_id == None:
+        message = f"erro user_id: {user_id}. Realize login novamente."
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        })
         
     try:
         db = get_conn('pessoa')
@@ -83,34 +81,69 @@ def get_profile_data():
         
     return jsonify({
         'ACK': True,
+        'message': 'Perfil buscado com sucesso',
         'data': profile_data
     })
 
 
 @blueprint.route("/update_profile", methods = ["PUT"])
 @access_token_required
-@sysadmin_required
+@sysadmin_owner_required
 def update_profile():
+    user_id = request.cookies.get('user_id')
     db = get_conn('pessoa')
-
     user = dict(request.json)
     count_users = db.users.count_documents({'username': user.get('username')})
-    
     if count_users != 1:
-        message='Usuário não encontrado.'
+        message=f"Usuário '{user.get('username')}' não encontrado."
         current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return jsonify({
             'ACK': False,
             'message': message
         }), 400
 
-    db.users.update_one({'username': user.get('username')},{"$set": user})
-    message=f"Perfil do usuário {user.get('username')} alterado com sucesso"
+    defaults ={'updated_at': datetime.utcnow() }
+    
+    update_data = user | defaults
+
+    if request.json.get('username') == user_id:
+        if user_has_profile(user_id,'user'):
+            profile_user = {"profile":"user"}
+        
+        if user_has_profile(user_id,'sysadmin'):
+            profile_user = {"profile":"sysadmin"}
+            
+        update_data = update_data | profile_user
+    
+    db.users.update_one({'username': update_data.get('username')},{"$set": update_data})
+
+    try:        
+        profile_data = [
+            {
+                'name': u['name'],
+                'username': u['username'],
+                'profile': u['profile'],
+                'email': u['email'],
+                'password': u['password'],
+                'created_at': u['created_at'],
+                'updated_at': u['updated_at']
+            } for u in db.users.find({'username':update_data.get('username')})
+        ]
+    
+    except Exception as e:
+        message = f"{e}"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        })
+
+    message=f"Perfil do usuário {profile_data[0].get('username')} alterado com sucesso"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     return jsonify({
         'ACK': True,
         'message': message,
-        'usuário':dict(request.json)
+        'data': profile_data
     })
 
 
@@ -132,11 +165,42 @@ def insert_profile():
             'message': message
         }), 400
 
-    db.users.insert_one(user)
-    message='Usuário inserido com sucesso'
+    defaults ={
+        'created_at': datetime.utcnow(),
+        'profile': 'user',
+        'updated_at': None,
+        'deleted_at': None
+    }
+
+    insert_data = user | defaults
+    
+    db.users.insert_one(insert_data)
+
+    try:        
+        profile_data = [
+            {
+                'name': u['name'],
+                'username': u['username'],
+                'profile': u['profile'],
+                'email': u['email'],
+                'password': u['password'],
+                'created_at': u['created_at'],
+                'updated_at': u['updated_at']
+            } for u in db.users.find({'username':insert_data.get('username')})
+        ]
+    
+    except Exception as e:
+        message = f"{e}"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        })
+
+    message=f"Usuário(a) '{insert_data.get('name')}' inserido com sucesso"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     return jsonify({
         'ACK': True,
         'message': message,
-        'usuário':dict(request.json)
+        'data': profile_data
     })
