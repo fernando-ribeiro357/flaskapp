@@ -60,7 +60,7 @@ def auth():
             'ACK': True,
             'token': refresh_token
         }))        
-        response.set_cookie(key='user_id', value=username, httponly=True)        
+        response.set_cookie(key='user_id', value=username, httponly=True)
         return response
         
     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
