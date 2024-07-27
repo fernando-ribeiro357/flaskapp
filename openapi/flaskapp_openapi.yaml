@@ -18,7 +18,8 @@
           "description": "Successful operation"
           "content":
             "application/json":
-              {"ACK": true,"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZmVybmFuZG8iLCJleHAiOjE3MjIyMjk5NzF9.WWv4kAx2YDA-h_4DtBfxzhAiIJ9AnVmWDl_cPofUZdI"}
+              "schema":
+                "type": "string"
         '400':
           "description": "Invalid input"
       "summary": "auth_refresh_token"
@@ -107,7 +108,7 @@
       "description": "Solicita um access_token, fornecendo um refresh_token, para
         realizar as operações CRUD na API."
       "parameters": []
-      "responses":        
+      "responses": {}
       "summary": "auth_access_token"
       "operationId": "auth_access_token"
       "tags":
