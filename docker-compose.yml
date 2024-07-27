@@ -36,7 +36,7 @@ services:
     volumes:
       - ./openapi:/tmp
     environment:
-      SWAGGER_JSON: /tmp/flaskapp_openapi.yaml
+      SWAGGER_JSON: /tmp/openapi.yml
       
 
 volumes:
