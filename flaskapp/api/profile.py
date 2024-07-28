@@ -190,7 +190,7 @@ def insert_profile():
     })
 
 
-@blueprint.route("/delete_profile", methods = ["DELETE"])
+@blueprint.route("/delete_profile", methods = ["POST"])
 @access_token_required
 @sysadmin_required
 def delete_profile():
