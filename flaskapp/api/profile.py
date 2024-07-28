@@ -237,7 +237,59 @@ def delete_profile():
             'message': message
         })
 
-    message=f"Perfil do usuário {profile_data.get('username')} excluído com sucesso"
+    message=f"Perfil do usuário {profile_data.get('username')} excluído com sucesso (soft delete)"
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    return jsonify({
+        'ACK': True,
+        'message': message,
+        'data': [profile_data]
+    })
+
+
+@blueprint.route("/purge_profile", methods = ["DELETE"])
+@access_token_required
+@sysadmin_required
+def purge_profile():
+    user_id = request.cookies.get('user_id')
+
+    user = dict(request.json)
+    if request.json.get('username') == user_id:
+        message=f"{user_id}, você não pode excluir o próprio perfil."
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        }), 400
+    
+    try:
+
+        db = get_conn('pessoa')
+
+        user_profile = db.users.find_one({'username':user.get('username')})
+                   
+        if user_profile == None:
+            message=f"Usuário '{user.get('username')}' não encontrado."
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            return jsonify({
+                'ACK': False,
+                'message': message
+            }), 400
+        
+        
+        profile_data = json.loads(json.dumps(user_profile, default=lambda x: list(x) if isinstance(x, tuple) else str(x)))
+        
+        db.users.delete_one({'username': user.get('username')})
+
+    
+    except Exception as e:
+        message = f"{e}"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message': message
+        })
+
+    message=f"Perfil do usuário {profile_data.get('username')} excluído com sucesso (purge)"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     return jsonify({
         'ACK': True,
