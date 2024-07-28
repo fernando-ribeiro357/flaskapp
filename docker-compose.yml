@@ -5,8 +5,17 @@ services:
       dockerfile: dev.Dockerfile
     ports:
       - 8000:8000
-    env_file:
-      - ./flaskapp/.env
+    # env_file:
+    #   - ./flaskapp/.env
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=True
+      - JWT_SECRET="flaskapp-jwt-secret"
+      - JWT_REFRESH_SECRET="flaskapp-jwt-refresh-secret"
+      - APP_URL=http://localhost:8000
+      - MONGO_ROOT_USERNAME=root
+      - MONGO_ROOT_PASSWORD=root-passwd
+      - MONGO_URL="mongodb://root:root-passwd@mongo-server:27017/"
     volumes:
       - ./flaskapp:/opt/app
 
@@ -15,8 +24,12 @@ services:
     # restart: always
     ports:
       - 27017:27017
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
+    environment:
+      - MONGO_INITDB_DATABASE=pessoa
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root-passwd
     volumes:
       - ./users.js:/docker-entrypoint-initdb.d/users.js:ro
       
@@ -25,8 +38,13 @@ services:
     # restart: always
     ports:
       - 8081:8081
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root-passwd
+      - ME_CONFIG_MONGODB_URL="mongodb://root:root-passwd@mongo-server:27017/"
+      - ME_CONFIG_BASICAUTH=false
   
   swagger:
     image: swaggerapi/swagger-ui
