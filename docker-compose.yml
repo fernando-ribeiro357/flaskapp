@@ -1,40 +1,64 @@
 services:
   flaskapp:
-    build: .
-    # image: fernandoribeiro357/flaskapp:latest
-    # image: fernandoribeiro357/flaskapp:slim
-    restart: always
+    build: 
+      context: .
+      dockerfile: dev.Dockerfile
     ports:
       - 8000:8000
-    env_file:
-      - ./flaskapp/.env
+    # env_file:
+    #   - ./flaskapp/.env
+    
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=True
+      - JWT_SECRET="flaskapp-jwt-secret"
+      - JWT_REFRESH_SECRET="flaskapp-jwt-refresh-secret"
+      - APP_URL=http://localhost:8000
+      - MONGO_ROOT_USERNAME=root
+      - MONGO_ROOT_PASSWORD=root-passwd
+      - MONGO_URL="mongodb://root:root-passwd@mongo-server:27017/"
     volumes:
       - ./flaskapp:/opt/app
 
   mongo-server:
     image: "mongo:latest"
-    restart: always
+    # restart: always
     ports:
       - 27017:27017
+    # env_file:
+    #   - .env
+    
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
-      - MONGO_INITDB_ROOT_PASSWORD=3o5bpq
       - MONGO_INITDB_DATABASE=pessoa
-    # entrypoint: users.json
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root-passwd
     volumes:
-      - "mongodb:/data/db"
+      - ./users.js:/docker-entrypoint-initdb.d/users.js:ro
       
   mongo-express:
     image: mongo-express
-    restart: always
+    # restart: always
     ports:
       - 8081:8081
+    # env_file:
+    #   - .env
+    
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=3o5bpq
-      - ME_CONFIG_MONGODB_URL=mongodb://mongoadmin:3o5bpq@mongo-server:27017/
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root-passwd
+      - ME_CONFIG_MONGODB_URL="mongodb://root:root-passwd@mongo-server:27017/"
       - ME_CONFIG_BASICAUTH=false
+  
+  swagger:
+    image: swaggerapi/swagger-ui
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./openapi:/tmp
+    environment:
+      SWAGGER_JSON: /tmp/openapi.yml
       
 
 volumes:
-  mongodb: {}
+  mongodb_teste: {}

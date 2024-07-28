@@ -1,5 +1,5 @@
 import logging.config
-from flask import Blueprint, jsonify, request, current_app
+from flask import Blueprint, jsonify, request, current_app, make_response
 
 from extensions.token_utils import (refresh_token_required,
                                     generate_access_token,
@@ -15,8 +15,12 @@ blueprint = Blueprint(
 @blueprint.route("/auth/get_access_token")
 @refresh_token_required
 def get_access_token():
+    # Busca o user_id nos cookies
+    user_id = request.cookies.get('user_id')
+
     return jsonify({
-        'token': generate_access_token(request.cookies.get('user_id'))
+        'ACK': True,
+        'token': generate_access_token(user_id)
     })
 
 
@@ -33,8 +37,9 @@ def auth():
         user = [
             {
                 'username': u.get('username'),
-                'password': u.get('password')
-            } for u in db.users.find({'username': username})
+                'password': u.get('password'),
+                'profile': u.get('profile')
+            } for u in db.users.find({'username': username,'deleted_at': None})
         ]
 
     # validar dados
@@ -50,11 +55,13 @@ def auth():
     
     if credentialIsValid:
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {username} realizou login com sucesso")
-        return jsonify({
+        refresh_token = generate_refresh_token(username)
+        response = make_response(jsonify({
             'ACK': True,
-            'token': generate_refresh_token(username)
-            #'token': f'token-usuario {username}'
-        })
+            'token': refresh_token
+        }))        
+        response.set_cookie(key='user_id', value=username, httponly=True)
+        return response
         
     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
     return jsonify({
