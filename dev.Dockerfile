@@ -1,10 +1,12 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 COPY ./requirements-dev.txt /tmp
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements-dev.txt
 
-RUN mkdir /opt/app
+# RUN mkdir /opt/app
+
+ADD ./flaskapp /opt/app
 
 WORKDIR /opt/app
 
