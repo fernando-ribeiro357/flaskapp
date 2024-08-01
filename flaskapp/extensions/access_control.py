@@ -66,7 +66,7 @@ def sysadmin_required(fn):
         user_id = request.cookies.get('user_id')        
 
         if user_id == None:
-            message = 'user_id "None": Usuário não logado'
+            message = f'user_id "{user_id}": Usuário não logado'
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             return jsonify({
                 'ACK': False,

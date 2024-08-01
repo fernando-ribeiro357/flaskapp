@@ -15,8 +15,8 @@ blueprint = Blueprint(
 
 
 @blueprint.route("/auth/get_access_token")
-@refresh_token_required
 @cross_origin()
+@refresh_token_required
 def get_access_token():
     # Busca o user_id nos cookies
     user_id = request.cookies.get('user_id')

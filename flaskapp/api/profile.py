@@ -4,6 +4,8 @@ import json
 
 from datetime import datetime
 
+from flask_cors import cross_origin
+
 from flask import Blueprint, jsonify, request, current_app
 
 from extensions.token_utils import (access_token_required)
@@ -16,6 +18,7 @@ blueprint = Blueprint('profile',
 
 
 @blueprint.route("/get_profiles")
+@cross_origin()
 @access_token_required
 @sysadmin_required
 def get_profiles():
@@ -48,6 +51,7 @@ def get_profiles():
     })
 
 @blueprint.route("/get_profile_data")
+@cross_origin()
 @access_token_required
 def get_profile_data():
 
@@ -87,7 +91,8 @@ def get_profile_data():
     })
 
 
-@blueprint.route("/update_profile", methods = ["PUT"])
+@blueprint.route("/update_profile", methods = ["PATH"])
+@cross_origin()
 @access_token_required
 @sysadmin_owner_required
 def update_profile():
@@ -141,6 +146,7 @@ def update_profile():
 
 
 @blueprint.route("/insert_profile", methods = ["POST"])
+@cross_origin()
 @access_token_required
 @sysadmin_required
 def insert_profile():
@@ -191,6 +197,7 @@ def insert_profile():
 
 
 @blueprint.route("/delete_profile", methods = ["POST"])
+@cross_origin()
 @access_token_required
 @sysadmin_required
 def delete_profile():
@@ -247,6 +254,7 @@ def delete_profile():
 
 
 @blueprint.route("/purge_profile", methods = ["DELETE"])
+@cross_origin()
 @access_token_required
 @sysadmin_required
 def purge_profile():
