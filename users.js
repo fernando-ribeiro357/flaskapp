@@ -2,11 +2,11 @@ db = connect('mongodb://localhost/pessoa');
 
 db.users.insertMany([
     {
-        "name":"Fernando Ribeiro",
+        "name":"Administrador",
         "password":"senha123",
         "profile":"sysadmin",
-        "username":"fernando",
-        "email":"fernando@flaskapp.local",
+        "username":"admin",
+        "email":"admin@flaskapp.local",
         "created_at": new Date(),
         "updated_at": null,
         "deleted_at": null

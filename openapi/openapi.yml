@@ -1,20 +1,88 @@
 openapi: '3.0.3'
 info:
   title: API Title
-  version: '1.0'
+  version: 'v1'
 servers:
-  - url: http://localhost:8000
+  - url: http://localhost:8000/api/v1
+
+components:
+  securitySchemes:
+    refreshTokenRequired:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+    
+    accessTokenRequired:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+  
+
 paths:
-  /api/v1/auth:
+  /auth:
     post:
+      tags:
+        - Auth
       responses:
         '200':
           description: OK
+          headers: 
+            Set-Cookie:
+              schema: 
+                type: string
+                example: user_id=username; Path=/; HttpOnly
+
       requestBody:
         description: Autenticação do usuário. Retorna o refresh_token.
         content:
           application/json:
             schema:
-              type: string
-        required: true
+              required:
+                - username
+                - password
+              type: object
+              properties:
+                username:
+                  type: string                  
+                  example: username
+                  required: true
+                password:
+                  type: string
+                  example: password
+                  required: true
 
+  /auth/get_access_token:
+    get:
+      security:
+        - refreshTokenRequired: []
+      tags:
+        - Auth
+      description: Solicita um access_token para realizar as requisições de CRUD. \n Requer um refresh_token no cabeçalho de autenticação.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+
+  /get_profile_data:
+    get:
+      security:
+        - accessTokenRequired: []
+      tags:
+        - CRUD
+      description: Solicita os dados do usuário logado (com refresh_token). \n Requer um access_token no cabeçalho de autenticação.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+
+  /get_profiles:
+    get:
+      security:
+        - accessTokenRequired: []
+      tags:
+        - CRUD
+      description: Solicita os dados de todos os usuários. \n Requer um access_token no cabeçalho de autenticação.
+      parameters: []
+      responses:
+        '200':
+          description: OK

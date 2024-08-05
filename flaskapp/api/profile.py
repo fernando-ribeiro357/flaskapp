@@ -1,5 +1,5 @@
 import logging.config
-
+from os import getenv
 import json
 
 from datetime import datetime
@@ -8,7 +8,7 @@ from flask_cors import cross_origin
 
 from flask import Blueprint, jsonify, request, current_app
 
-from extensions.token_utils import (access_token_required)
+from extensions.token_utils import (access_token_required, decode_token)
 from extensions.access_control import (sysadmin_required, sysadmin_owner_required, user_has_profile)
 from extensions.db import get_conn
 
@@ -55,7 +55,30 @@ def get_profiles():
 @access_token_required
 def get_profile_data():
 
-    user_id = request.cookies.get('user_id')
+    # user_id = request.cookies.get('user_id')
+
+    get_token = request.headers.get('Authorization')
+    if (get_token == None):
+        message = 'Token Nulo'
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        return jsonify({
+            'ACK': False,
+            'message':message
+        })
+    
+    token = get_token.split()[-1]
+
+    secret = getenv('JWT_SECRET')
+        
+    get_payload = decode_token(token, secret)
+
+    payloadData = dict(get_payload.json)
+
+    if payloadData.get('ACK') == False:
+        return jsonify(payloadData)
+    
+    payload = payloadData.get('payload')
+    user_id = payload.get('user_id')
 
     if user_id == None:
         message = f"erro user_id: {user_id}. Realize login novamente."
@@ -91,7 +114,7 @@ def get_profile_data():
     })
 
 
-@blueprint.route("/update_profile", methods = ["PATH"])
+@blueprint.route("/update_profile", methods = ["PATCH"])
 @cross_origin()
 @access_token_required
 @sysadmin_owner_required

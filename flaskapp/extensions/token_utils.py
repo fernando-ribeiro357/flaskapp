@@ -43,11 +43,9 @@ def jwt_required(jwt_secret):
     
     token = get_token.split()[-1]
     try:
-        jwt.decode(
-            token,
-            jwt_secret,
-            algorithms = ['HS256']
-        )
+        
+        payload = jwt.decode(token, jwt_secret, algorithms = ['HS256'])
+
     except jwt.exceptions.ExpiredSignatureError:
         message = 'Token expirado'
         current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -79,7 +77,8 @@ def jwt_required(jwt_secret):
         
     return jsonify({
         'ACK': True,
-        'message': 'Token ok.'
+        'message': 'Token ok.',
+        'data': payload
     })
     
 
@@ -124,7 +123,7 @@ def generate_refresh_token(user_id):
             'message':message
         })
 
-def decode_token(token, secret):
+def decode_token(token, secret):    
     try:
         payload = jwt.decode(token, secret, algorithms=["HS256"])
         
