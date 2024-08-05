@@ -38,10 +38,14 @@ def index():
     <h1>Somente API</h1>
     <h3>Autenticação:</h3>
     <p>Enviar POST json {'username': 'seu-login-aqui', 'password':'sua-senha-aqui'} para http://localhost:8000/api/v1/auth</p>
-    <p>TODO:</p>
-    <ul>
-        <li>Documentação swagger</li>
+    <p>Em processo:</p>
+    <ul>Documentação swagger
+        <li>/auth</li>
+        <li>/auth/get_access_token</li>
+        <li>/get_profile_data</li>
+        <li>/get_profiles</li>
     </ul>
+        
     </body>
     </html>
     '''
