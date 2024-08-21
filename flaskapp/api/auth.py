@@ -2,8 +2,6 @@ from os import getenv
 import logging.config
 from flask import Blueprint, jsonify, request, current_app, make_response
 
-from flask_cors import cross_origin
-
 from extensions.token_utils import (refresh_token_required,
                                     generate_access_token,
                                     generate_refresh_token,
@@ -17,7 +15,6 @@ blueprint = Blueprint(
 
 
 @blueprint.route("/auth/get_access_token")
-@cross_origin()
 @refresh_token_required
 def get_access_token():
     # Busca o user_id nos cookies
@@ -49,7 +46,6 @@ def get_access_token():
 
 
 @blueprint.route("/auth", methods = ['POST'])
-@cross_origin()
 def auth():
     # {username: usuario, password: senha}
     username = request.json.get('username')

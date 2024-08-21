@@ -4,8 +4,6 @@ from os import getenv
 
 from flask import Flask, jsonify
 
-from flask_cors import CORS
-
 from dotenv import load_dotenv
 
 # blueprints
@@ -17,7 +15,6 @@ logging.config.fileConfig('logging.ini')
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
 
 # blueprints
 app.register_blueprint(auth)
