@@ -45,11 +45,11 @@ paths:
                 username:
                   type: string                  
                   example: username
-                  required: true
+                  required: ['username']
                 password:
                   type: string
                   example: password
-                  required: true
+                  required: ['password']
 
   /auth/get_access_token:
     get:

@@ -6,7 +6,7 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - ./flaskapp/.env
+      - ./flaskapp/env-file
     volumes:
       - ./flaskapp:/opt/app
 
