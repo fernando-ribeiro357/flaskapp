@@ -1,0 +1,11 @@
+.row {
+    --bs-gutter-y: 1.5rem;
+}
+
+.bi {
+    fill: currentColor;
+}
+
+.navbar {
+    margin-bottom: 12px;
+}
