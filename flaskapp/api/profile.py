@@ -4,10 +4,18 @@ import json
 
 from datetime import datetime
 
-from flask import Blueprint, jsonify, request, current_app
+from flask import (Blueprint, 
+                   jsonify, 
+                   request, 
+                   flash,
+                   make_response,
+                   current_app)
 
-from extensions.token_utils import (access_token_required, decode_token)
-from extensions.access_control import (sysadmin_required, sysadmin_owner_required, user_has_profile)
+from extensions.token_utils import (token_required)
+
+from extensions.access_control import (sysadmin_required,
+                                       sysadmin_owner_required, 
+                                       user_has_profile)
 from extensions.db import get_conn
 
 blueprint = Blueprint('profile',
@@ -16,7 +24,7 @@ blueprint = Blueprint('profile',
 
 
 @blueprint.route("/get_profiles")
-@access_token_required
+@token_required
 @sysadmin_required
 def get_profiles():
     db = get_conn('pessoa')
@@ -47,35 +55,13 @@ def get_profiles():
         'data': profiles_data
     })
 
-@blueprint.route("/get_profile_data")
-@access_token_required
+@blueprint.route("/get_profile_data", methods = ['POST'])
+@token_required
 def get_profile_data():
 
-    # user_id = request.cookies.get('user_id')
-
-    get_token = request.headers.get('Authorization')
-    if (get_token == None):
-        message = 'Token Nulo'
-        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        return jsonify({
-            'ACK': False,
-            'message':message
-        })
-    
-    token = get_token.split()[-1]
-
-    secret = getenv('JWT_SECRET')
-        
-    get_payload = decode_token(token, secret)
-
-    payloadData = dict(get_payload.json)
-
-    if payloadData.get('ACK') == False:
-        return jsonify(payloadData)
-    
-    payload = payloadData.get('payload')
-    user_id = payload.get('user_id')
-
+    request_data = request.get_json(True)
+    user_id = request_data.get('user_id')
+         
     if user_id == None:
         message = f"erro user_id: {user_id}. Realize login novamente."
         current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -88,12 +74,6 @@ def get_profile_data():
         db = get_conn('pessoa')
         user_profile = db.users.find_one({'username':user_id})
         profile_data = json.loads(json.dumps(user_profile, default=lambda x: list(x) if isinstance(x, tuple) else str(x)))
-    
-        return jsonify({
-            'ACK': True,
-            'message': 'Perfil buscado com sucesso',
-            'data': [profile_data]
-        })
 
     except Exception as e:
         message = f"erro get_profile_data: {e}"
@@ -103,15 +83,18 @@ def get_profile_data():
             'message': message
         })
         
+    
+    message = 'Perfil buscado com sucesso'
+    current_app.logger.info(f"get_profile_data: {message}")
     return jsonify({
         'ACK': True,
-        'message': 'Perfil buscado com sucesso',
+        'message': message,
         'data': [profile_data]
     })
 
 
 @blueprint.route("/update_profile", methods = ["PATCH"])
-@access_token_required
+@token_required
 @sysadmin_owner_required
 def update_profile():
     user_id = request.cookies.get('user_id')
@@ -130,7 +113,6 @@ def update_profile():
         defaults ={'updated_at': datetime.utcnow() }
         
         update_data = user | defaults
-
         if request.json.get('username') == user_id:
             if user_has_profile(user_id,'user'):
                 profile_user = {"profile":"user"}
@@ -164,7 +146,7 @@ def update_profile():
 
 
 @blueprint.route("/insert_profile", methods = ["POST"])
-@access_token_required
+@token_required
 @sysadmin_required
 def insert_profile():
 
@@ -214,19 +196,19 @@ def insert_profile():
 
 
 @blueprint.route("/delete_profile", methods = ["POST"])
-@access_token_required
+@token_required
 @sysadmin_required
 def delete_profile():
-    user_id = request.cookies.get('user_id')
+    # user_id = request.cookies.get('user_id')
 
     user = dict(request.json)
-    if request.json.get('username') == user_id:
-        message=f"{user_id}, você não pode excluir o próprio perfil."
-        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        return jsonify({
-            'ACK': False,
-            'message': message
-        }), 400
+    # if request.json.get('username') == user_id:
+    #     message=f"{user_id}, você não pode excluir o próprio perfil."
+    #     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    #     return jsonify({
+    #         'ACK': False,
+    #         'message': message
+    #     }), 400
     
     try:
         delete_data = {
@@ -270,7 +252,7 @@ def delete_profile():
 
 
 @blueprint.route("/purge_profile", methods = ["DELETE"])
-@access_token_required
+@token_required
 @sysadmin_required
 def purge_profile():
     user_id = request.cookies.get('user_id')

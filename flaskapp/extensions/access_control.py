@@ -3,11 +3,15 @@ from os import getenv
 from functools import wraps
 from .db import get_conn
 
-from flask import jsonify, request, current_app
+from flask import (jsonify,
+                   request, 
+                   flash,
+                   make_response,
+                   redirect,
+                   current_app)
 
 
 def user_has_profile(username, profile):
-    
     try:
         # busca usuario no banco e verifica se possui perfil fornecido"
         db = get_conn('pessoa')    
@@ -27,37 +31,34 @@ def user_has_profile(username, profile):
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return False    
 
-
+def is_sysadmin(username):
+    return user_has_profile(username,'sysadmin')
 
 def sysadmin_owner_required(fn):
     @wraps(fn)
     def wrapped(*args, **kwargs):
         # Busca o user_id e profile nos cookies
         user_id = request.cookies.get('user_id')        
-        username = request.json.get('username')
+        username = request.args.get('username')
         if user_id == None:
             message = 'user_id "None": Usuário não logado'
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
+            flash(message)
+            return make_response(redirect("/"))
         
-        if request.method == 'PUT' and username == user_id:
-            # Permite executar se o método for PUT e a alteração for executada pelo próprio usuário
+        if username == user_id:
+            # Permite executar se a alteração for executada pelo próprio usuário
             return fn(*args,**kwargs)        
         
+        # Ou permite executar se a alteração for executada por usuário perfil 'sysadmin' 
         if user_has_profile(user_id,'sysadmin') == False:
                 message = f"O(A) usuário(a) '{user_id}' não possui perfil de sysadmin e não é dono do perfil '{username}'. (perfil: {user_profile})"
                 current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-                return jsonify({
-                    'ACK': False,
-                    'message':message
-                })        
+                flash(message)
+                return make_response(redirect("/"))
 
         return fn(*args,**kwargs)
     return wrapped
-
 
 def sysadmin_required(fn):
     @wraps(fn)
@@ -66,20 +67,16 @@ def sysadmin_required(fn):
         user_id = request.cookies.get('user_id')        
 
         if user_id == None:
-            message = f'user_id "{user_id}": Usuário não logado'
+            message = 'Usuário não logado'
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            return jsonify({
-                'ACK': False,
-                'message':message
-            })
+            flash(message)
+            return make_response(redirect("/"))
        
-        if user_has_profile(user_id,'sysadmin') == False:
+        if is_sysadmin(user_id) == False:
                 message = f"Usuário(a) '{user_id}' não possui o perfil 'sysadmin'"
                 current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-                return jsonify({
-                    'ACK': False,
-                    'message':message
-                })
-        
+                flash(message)
+                return make_response(redirect("/"))
+
         return fn(*args,**kwargs)
     return sysadmin_required_wrap

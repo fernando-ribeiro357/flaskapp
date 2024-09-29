@@ -1,4 +1,4 @@
-{% macro navbar() %}
+{% macro navbar(sysadmin=sysadmin) %}
 <nav class="navbar bg-primary navbar-expand-md">
 	<div class="container">
 		<a class="navbar-brand" href="/">
@@ -19,11 +19,16 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/profile">Profile</a>
 				</li>
+				{% if sysadmin %}
 				<li class="nav-item">
 					<a class="nav-link" href="/profiles">Profiles</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/profile_insert">Profile Insert</a>
+				</li>
+				{% endif %}
+				<li class="nav-item">
+					<a class="nav-link" href="/sair">Sair</a>
 				</li>
 			</ul>
 		</div>

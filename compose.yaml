@@ -8,12 +8,12 @@ services:
     environment:
       - FLASK_APP=app.py
       - FLASK_DEBUG=True
-      - JWT_SECRET="jwt-secret"
-      - JWT_REFRESH_SECRET="jwt-refresh-token"
+      - JWT_SECRET=c04575fffdd07e3b5f6dfc9401bbf780c20eed9c
+      - SECRET_KEY=Wievievae5fa3eig5eaWaichooQuah4k
       - APP_URL=http://localhost:8000
       - MONGO_ROOT_USERNAME=root
       - MONGO_ROOT_PASSWORD=root-passwd
-      - MONGO_URL="mongodb://root:root-passwd@mongo-server:27017/"
+      - MONGO_URL=mongodb://root:root-passwd@mongo-server:27017/
     volumes:
       - ./flaskapp:/opt/app
 
@@ -39,17 +39,7 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=root-passwd
       - ME_CONFIG_MONGODB_URL=mongodb://root:root-passwd@mongo-server:27017/
       - ME_CONFIG_BASICAUTH=false
-  
-  swagger:
-    image: swaggerapi/swagger-ui
-    restart: always
-    ports:
-      - 8080:8080
-    volumes:
-      - ./openapi:/tmp
-    environment:
-      SWAGGER_JSON: /tmp/openapi.yml
       
 
-volumes:
-  mongodb_teste: {}
+# volumes:
+#   mongodb_teste: {}

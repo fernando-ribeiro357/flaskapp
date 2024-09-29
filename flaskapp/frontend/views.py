@@ -10,14 +10,42 @@ from flask import ( Blueprint,
                     redirect,
                     render_template,
                     current_app,
+                    flash,
                     request )
 
-from extensions.token_utils import refresh_token_required, sysadmin_required
+from api.auth import is_logged, hash_password
+from extensions.token_utils import token_required
+from extensions.access_control import  (sysadmin_required,
+                                        sysadmin_owner_required, 
+                                        is_sysadmin)
 
 blueprint = Blueprint('views', __name__)
 
+@blueprint.route("/sair",methods = ['GET'])
+def sair():
+    flash("Usuário deslogado!")
+    response = make_response(redirect("/"))
+    response.delete_cookie("token")
+    response.delete_cookie("user_id")
+    return response
 
-@blueprint.route("/",methods = ['GET','POST'])
+@blueprint.route("/",methods = ['GET'])
+def home():
+    if is_logged():
+        token = request.cookies.get('token')
+        user_id = request.cookies.get('user_id')
+        
+        response = make_response(redirect("/profile"))
+        response.headers['Authorization'] = f"Bearer {token}"
+        response.set_cookie(key='token', value=token, httponly=True)
+        response.set_cookie(key='user_id', value=user_id, httponly=True)
+        return response
+    
+    else:
+        return make_response(redirect('/login'))
+
+
+
 @blueprint.route("/login",methods = ['GET','POST'])
 def login():
     if request.method == 'POST':
@@ -26,116 +54,136 @@ def login():
             'username': request.form.get('username'),
             'password': request.form.get('password')
         }
-        resposta = None
+        get_auth = None
         try:
-            resposta = requests.post(f"{getenv('APP_URL')}/api/v1/auth",
-                        json=payload)
-            refresh_token = resposta.json()
-            # { ACK: Bool, token: "aqui-evem-o-token" }            
-            # return jsonify({'refresh_token': refresh_token})
+            get_auth = requests.post(f"{getenv('APP_URL')}/api/v1/auth",
+                        json=payload,
+                        cookies=request.cookies)
+            resposta = get_auth.json()
 
         except Exception as e:
             message = f'erro login: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            response = make_response(redirect("/login"))
-            return response
+            flash(message)
+            retorno = make_response(redirect('/login'))
+            return retorno
         
-        if refresh_token['ACK']:
+        if resposta.get('ACK'):
+            token = resposta.get('token')
             response = make_response(redirect("/profile"))
-            response.set_cookie(key='token', value=refresh_token.get('token'), httponly=True)
+            response.headers['Authorization'] = f"Bearer {token}"
+            response.set_cookie(key='token', value=token, httponly=True)
             response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
             return response
+        else:
+            message = resposta.get('message')
+            current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
+            retorno = make_response(redirect('/login'))
+            return retorno
 
     
     return render_template('login.html')
 
 
-@blueprint.route("/profiles")
-@refresh_token_required
+@blueprint.route("/profile", methods = ['GET'])
+@token_required
+def get_profile():
+    try:
+        token = request.cookies.get('token')
+        user_id = request.cookies.get('user_id')
+        
+        if (token == None):
+            message = 'Token Nulo'
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
+            return make_response(redirect("/"))
+
+    # requisição para uma api que forneça os dados de profile
+        resposta_profile = requests.post(
+            f"{getenv('APP_URL')}/api/v1/get_profile_data", 
+            headers={'Authorization': f'Bearer {token}'},
+            json={'user_id': user_id},
+            cookies=request.cookies)
+    
+    # formatar os dados recebidos
+        profile_data = resposta_profile.json()
+        if profile_data.get('ACK') == False:
+            message = profile_data.get('message')
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
+            return make_response(redirect("/"))
+        
+    except Exception as e:
+        message = f'erro profile: {e}'
+        current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        flash(message)
+        response = make_response(redirect("/"))
+        return response
+    
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados do perfil")
+    return render_template('profile.html',context=profile_data.get('data')[0],sysadmin=is_sysadmin(request.cookies.get('user_id')))
+    
+
+@blueprint.route("/profiles", methods = ['GET'])
+@token_required
 @sysadmin_required
 def get_profiles():
-    # requisitar um token de acesso
     try:
-        resposta_access = requests.get(
-            f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
-            cookies=request.cookies)
-        
-        access_token = resposta_access.json()['token']
-        
+        token = request.cookies.get('token')
+        if (token == None):
+            message = 'Token Nulo'
+            current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
+            return make_response(redirect("/"))
+                
     # requisição para uma api que forneça os dados de profile
         resposta_profiles = requests.get(
             f"{getenv('APP_URL')}/api/v1/get_profiles", 
-            headers={'Authorization': f'Bearer {access_token}'},
+            headers={'Authorization': f'Bearer {token}'},
             cookies=request.cookies)
     
     # formatar os dados recebidos
         profiles = resposta_profiles.json()
-        # return jsonify(profiles)
+        
 
     except Exception as e:
-        message = f'erro profile: {e}'
+        message = f'erro profiles: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        flash(message)
         response = make_response(redirect("/"))
         return response
     
-    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
-    return render_template('profiles.html',context=profiles)
-
-
-
-@blueprint.route("/profile")
-@refresh_token_required
-def get_profile():
-    # requisitar um token de acesso
-    try:
-        resposta_access = requests.get(
-            f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
-            cookies=request.cookies)
-        
-        access_token = resposta_access.json()['token']
-        
-    # requisição para uma api que forneça os dados de profile
-        resposta_profile = requests.post(
-            f"{getenv('APP_URL')}/api/v1/get_profile_data", 
-            headers={'Authorization': f'Bearer {access_token}'},
-            json={'user_id': request.cookies.get('user_id')})
     
-    # formatar os dados recebidos
-        profile_data = resposta_profile.json()
-        
-    except Exception as e:
-        message = f'erro profile: {e}'
-        current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        response = make_response(redirect("/"))
-        return response
-    
-    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
-    return render_template('profile.html',context=profile_data)
-    
+    user_id = request.cookies.get('user_id')
+    sysadmin = is_sysadmin(user_id)
+    message = "Carregou dados de perfis"
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    flash(message)
+    return render_template('profiles.html',context=profiles.get('data'),sysadmin=sysadmin)
 
-@blueprint.route("/user_profile")
-@refresh_token_required
-@sysadmin_required
+
+
+@blueprint.route("/user_profile", methods = ['GET'])
+@token_required
+@sysadmin_owner_required
 def get_profile_user():
     # requisitar um token de acesso
     try:
-        resposta_access = requests.get(
-            f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
-            cookies=request.cookies)
-        
-        access_token = resposta_access.json()['token']
-        
         user_id = request.args.get('user_id')
+        token = request.cookies.get('token')
         if user_id == None:
-            message = 'erro profile_user: Parâmetro não fornecido'
+            message = 'Parâmetro não fornecido'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
             response = make_response(redirect("/"))
             return response    
     # requisição para uma api que forneça os dados de profile
         resposta_profile = requests.post(
             f"{getenv('APP_URL')}/api/v1/get_profile_data", 
-            headers={'Authorization': f'Bearer {access_token}'},
-            json={'user_id': user_id})
+            headers={'Authorization': f'Bearer {token}'},
+            json={'user_id': user_id},
+            cookies=request.cookies)
     
     # formatar os dados recebidos
         profile_data = resposta_profile.json()
@@ -143,33 +191,31 @@ def get_profile_user():
     except Exception as e:
         message = f'erro profile: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        flash(message)
         response = make_response(redirect("/"))
         return response
     
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
-    return render_template('profile_update.html',context=profile_data)
+    return render_template('profile_update.html',context=profile_data.get('data')[0],sysadmin=is_sysadmin(request.cookies.get('user_id')))
 
 
 @blueprint.route("/profile_insert",methods=['POST','GET'])
-@refresh_token_required
+@token_required
 @sysadmin_required
 def profile_insert():
     if request.method == 'POST':
     # requisitar um token de acesso
         try:
-            resposta_access = requests.get(
-                f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
-                cookies=request.cookies)
             
-            access_token = resposta_access.json()['token']
-            
+            token = request.cookies.get('token')
+                        
             date = datetime.now()
             
             user_data = {
                 'username': request.form.get('username'),
                 'name': request.form.get('name'),
                 'email': request.form.get('email'),
-                'password': request.form.get('password'),
+                'password': hash_password(request.form.get('password')),
                 'profile': 'user',
                 'created_at': date.strftime("%Y-%m-%d %H:%M:%S"),
                 'updated_at': None
@@ -178,7 +224,7 @@ def profile_insert():
             # requisição para uma api que forneça os dados de profile
             resposta_profile = requests.post(
                 f"{getenv('APP_URL')}/api/v1/insert_profile", 
-                headers={'Authorization': f'Bearer {access_token}'},
+                headers={'Authorization': f'Bearer {token}'},
                 cookies=request.cookies,
                 json=user_data)
         
@@ -189,29 +235,29 @@ def profile_insert():
         except Exception as e:
             message = f'erro insert: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+            flash(message)
             response = make_response(redirect("/"))
             return response
         
-        current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: Inseriu perfil {profile_data}")
+        message = f"{profile_data.get('message')}"
+        current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        flash(message)
         response = make_response(redirect("/profiles"))
         return response
         # return jsonify(profile_data)
 
-    return render_template('profile_insert.html')
+    return render_template('profile_insert.html',sysadmin=is_sysadmin(request.cookies.get('user_id')))
     
 
 @blueprint.route("/profile_update",methods=['POST','GET'])
-@refresh_token_required
-@sysadmin_required
+@token_required
+@sysadmin_owner_required
 def profile_update():
     if request.method == 'POST':
     # requisitar um token de acesso
         try:
-            resposta_access = requests.get(
-                f"{getenv('APP_URL')}/api/v1/auth/get_access_token",
-                cookies=request.cookies)
-            
-            access_token = resposta_access.json()['token']
+            cookies=request.cookies
+            token = cookies.get('token')
             
             date = datetime.now()
                 
@@ -223,12 +269,12 @@ def profile_update():
             }
             passwd = request.form.get('password')
             if passwd != "":
-                user_data['password'] = passwd
+                user_data['password'] = hash_password(passwd)
 
             # requisição para uma api que forneça os dados de profile
-            resposta_profile = requests.put(
+            resposta_profile = requests.patch(
                 f"{getenv('APP_URL')}/api/v1/update_profile", 
-                headers={'Authorization': f'Bearer {access_token}'},
+                headers={'Authorization': f'Bearer {token}'},
                 cookies=request.cookies,
                 json=user_data)
         
@@ -249,6 +295,7 @@ def profile_update():
 
     username = request.args.get("user_id")
     db = get_conn('pessoa')
-    user = db.users.find({'username': username})
-    
-    return render_template('profile_update.html',context=user)
+    user = db.users.find({'username': username})    
+    response = render_template('profile_update.html',context=user,sysadmin=is_sysadmin(username))
+    response.headers['Content-Type'] = "text/html"
+    return response

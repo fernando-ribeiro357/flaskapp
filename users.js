@@ -3,7 +3,7 @@ db = connect('mongodb://localhost/pessoa');
 db.users.insertMany([
     {
         "name":"Administrador",
-        "password":"senha123",
+        "password":"$pbkdf2-sha256$29000$YgzBWEtpzTmnFKJ0LgWA0A$sJG1FBiaF8rPz6V9UU6usFMI8qD0wnOijMDL2sJnt0o",
         "profile":"sysadmin",
         "username":"admin",
         "email":"admin@flaskapp.local",
@@ -12,21 +12,21 @@ db.users.insertMany([
         "deleted_at": null
     },
     {
-        "name":"Oswaldo Gomes",
-        "password":"senha123",
+        "name":"Fernando Ribeiro",
+        "password":"$pbkdf2-sha256$29000$YgzBWEtpzTmnFKJ0LgWA0A$sJG1FBiaF8rPz6V9UU6usFMI8qD0wnOijMDL2sJnt0o",
         "profile":"user",
-        "username":"oswaldo",
-        "email":"oswaldo@flaskapp.local",
+        "username":"fernando",
+        "email":"fernando@flaskapp.local",
         "created_at": new Date(),
         "updated_at": null,
         "deleted_at": null
     },
     {
-        "name":"Arminda Almeirinda",
-        "password":"senha123",
+        "name":"Tarsila Mancebo",
+        "password":"$pbkdf2-sha256$29000$YgzBWEtpzTmnFKJ0LgWA0A$sJG1FBiaF8rPz6V9UU6usFMI8qD0wnOijMDL2sJnt0o",
         "profile":"user",
-        "username":"arminda",
-        "email":"arminda@flaskapp.local",
+        "username":"tarsila",
+        "email":"tarsila@flaskapp.local",
         "created_at": new Date(),
         "updated_at": null,
         "deleted_at": null
