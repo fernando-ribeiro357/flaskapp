@@ -77,6 +77,6 @@ def remove_task():
 
 
     message = f"Tarefa id {task_id} apagada"
-    current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     response = make_response(redirect('/tasks/add_get'))
     return response
