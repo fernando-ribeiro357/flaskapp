@@ -41,10 +41,11 @@ def get_add_tasks():
         response = make_response(redirect('/tasks'))
         return response
 
-    tasks = [{'id':u['_id'],'task': u['task']} for u in db.tasks.find()]
+    tarefas = [{'id':u['_id'],'task': u['task']} for u in db.tasks.find()]
     message="Carregou a lista de tarefas"
+    flash(message)
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    return render_template('tasks.html',tasklist=tasks,l=len(tasks))
+    return render_template('tasks.html',tasklist=tarefas,l=len(tarefas))
 
 
 # Function to clear the to-do list
