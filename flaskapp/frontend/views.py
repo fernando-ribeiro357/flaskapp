@@ -35,7 +35,7 @@ def home():
         token = request.cookies.get('token')
         user_id = request.cookies.get('user_id')
         
-        response = make_response(redirect("/profile"))
+        response = make_response(redirect("/tasks"))
         response.headers['Authorization'] = f"Bearer {token}"
         response.set_cookie(key='token', value=token, httponly=True)
         response.set_cookie(key='user_id', value=user_id, httponly=True)
