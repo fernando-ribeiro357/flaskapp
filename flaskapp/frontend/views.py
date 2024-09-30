@@ -31,7 +31,6 @@ def sair():
 
 @blueprint.route("/",methods = ['GET'])
 def home():
-    current_app.logger.info(f"Is Logged: {is_logged()}")
     if is_logged():
         token = request.cookies.get('token')
         user_id = request.cookies.get('user_id')
@@ -43,7 +42,6 @@ def home():
         return response
     
     else:
-        flash("Realize o login primeiro")
         return make_response(redirect('/login'))
 
 
@@ -161,7 +159,6 @@ def get_profiles():
     sysadmin = is_sysadmin(user_id)
     message = "Carregou dados de perfis"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    flash(message)
     return render_template('profiles.html',context=profiles.get('data'),sysadmin=sysadmin)
 
 
@@ -243,7 +240,6 @@ def profile_insert():
         
         message = f"{profile_data.get('message')}"
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        flash(message)
         response = make_response(redirect("/profiles"))
         return response
         # return jsonify(profile_data)
