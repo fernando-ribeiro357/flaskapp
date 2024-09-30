@@ -27,7 +27,7 @@ blueprint = Blueprint(
 
 # Function to add a task to the to-do list and show tasks
 @token_required
-@blueprint.route('/',methods=['GET','POST'])
+@blueprint.route('/add_get',methods=['GET','POST'])
 def get_add_tasks():
     
     db = get_conn('todolist')
@@ -38,7 +38,7 @@ def get_add_tasks():
         message="Tarefa inserida na lista"
         flash(message)
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        response = make_response(redirect('/tasks'))
+        response = make_response(redirect('/tasks/add_get'))
         return response
 
     tarefas = [{'id':u['_id'],'task': u['task']} for u in db.tasks.find()]
@@ -57,7 +57,7 @@ def clear_list():
     message = "Lista de tarefas apagada"
     flash(message)
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    response = make_response(redirect('/tasks'))
+    response = make_response(redirect('/tasks/add_get'))
     return response
 
 
@@ -73,12 +73,12 @@ def remove_task():
         message = f'Erro ao excluir a tarefa {task_id}: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         flash(message)
-        retorno = make_response(redirect('/tasks'))
+        retorno = make_response(redirect('/tasks/add_get'))
         return retorno
 
 
     message = f"Tarefa id {task_id} apagada"
     flash(message)
     current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    response = make_response(redirect('/tasks'))
+    response = make_response(redirect('/tasks/add_get'))
     return response

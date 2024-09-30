@@ -35,7 +35,7 @@ def home():
         token = request.cookies.get('token')
         user_id = request.cookies.get('user_id')
         
-        response = make_response(redirect("/tasks"))
+        response = make_response(redirect("/tasks/add_get"))
         response.headers['Authorization'] = f"Bearer {token}"
         response.set_cookie(key='token', value=token, httponly=True)
         response.set_cookie(key='user_id', value=user_id, httponly=True)
@@ -70,7 +70,7 @@ def login():
         
         if resposta.get('ACK'):
             token = resposta.get('token')
-            response = make_response(redirect("/tasks"))
+            response = make_response(redirect("/tasks/add_get"))
             response.headers['Authorization'] = f"Bearer {token}"
             response.set_cookie(key='token', value=token, httponly=True)
             response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
