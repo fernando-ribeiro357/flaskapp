@@ -65,6 +65,7 @@ def clear_list():
 @blueprint.route('/del',methods=['GET'])
 def remove_task():
     db = get_conn('todolist')
+    task_id = request.args.get('id')
     try:
         db.tasks.delete_one({'_id': ObjectId(task_id)});
     except Exception as e:
