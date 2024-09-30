@@ -1,8 +1,8 @@
-*.pyc
-venv/
-.venv/
-env/
-__pycache__/
+.venv
 .env
-log.json
-.vscode/
+venv
+env
+*pyc
+__pycache__/
+.vscode
+logs/

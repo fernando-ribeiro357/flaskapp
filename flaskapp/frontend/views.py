@@ -70,14 +70,15 @@ def login():
         
         if resposta.get('ACK'):
             token = resposta.get('token')
-            response = make_response(redirect("/tasks/add_get"))
-            response.headers['Authorization'] = f"Bearer {token}"
-            response.set_cookie(key='token', value=token, httponly=True)
-            response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
-            return response
+            user = resposta.get('user')
+            return jsonify(user)
+            # response = make_response(redirect("/tasks/add_get"))
+            # response.headers['Authorization'] = f"Bearer {token}"
+            # response.set_cookie(key='token', value=token, httponly=True)
+            # response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
+            # return response
         else:
             message = resposta.get('message')
-            current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             flash(message)
             retorno = make_response(redirect('/login'))
             return retorno

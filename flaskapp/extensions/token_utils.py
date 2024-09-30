@@ -51,7 +51,7 @@ def token_required(fn):
             return retorno
 
         except Exception as e:
-            message = f'Erro: {e}'
+            message = f'Erro token: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             flash(message)
             retorno = make_response(redirect('/'))
