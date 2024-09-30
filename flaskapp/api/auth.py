@@ -25,7 +25,6 @@ def auth():
     # {username: usuario, password: senha}
     username = request.json.get('username')
     password = request.json.get('password')
-    current_app.logger.info(f"{__name__}: login: {username} senha: {password}")
     ## fazer consulta no banco
     db = get_conn('pessoa')
     
@@ -44,10 +43,11 @@ def auth():
 
 
     except IndexError:
-        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
+        message = "Usuário ou senha inválidos"
+        current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         return jsonify({
             'ACK': False,
-            'message': 'Usuário ou senha inválidos'
+            'message': message
         })
     
     if credentialIsValid:
