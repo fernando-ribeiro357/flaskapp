@@ -31,15 +31,10 @@ blueprint = Blueprint(
 def get_add_tasks():
     
     db = get_conn('todolist')
-    collection = f"{request.cookies.get('user_id')}-tasks"
-    if collection in db.list_collection_names() == False:
-        db.create_collection(collection)
-    
-    lista = db.get_collection(collection)
     if request.method == 'POST':
         task_data = {'task': request.form.get('task')}
         task = dict(task_data)
-        lista.insert_one(task)
+        db.tasks.insert_one(task)
         message="Tarefa inserida na lista"
         flash(message)
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -57,9 +52,7 @@ def get_add_tasks():
 @blueprint.route('/clear')
 def clear_list():
     db = get_conn('todolist')
-    collection = f"{request.cookies.get('user_id')}-tasks"
-    lista = db.get_collection(collection)
-    lista.delete_many({});
+    db.tasks.delete_many({});
     message = "Lista de tarefas apagada"
     flash(message)
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -73,11 +66,8 @@ def clear_list():
 @blueprint.route('/del',methods=['GET'])
 def remove_task():
     db = get_conn('todolist')
-    collection = f"{request.cookies.get('user_id')}-tasks"
-    lista = db.get_collection(collection)
-    task_id = request.args.get('id')
     try:
-        lista.delete_one({'_id': ObjectId(task_id)});
+        db.tasks.delete_one({'_id': ObjectId(task_id)});
     except Exception as e:
         message = f'Erro ao excluir a tarefa {task_id}: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
