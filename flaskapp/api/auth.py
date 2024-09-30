@@ -78,11 +78,9 @@ def auth():
         })
 
 def is_logged():
-    token = request.cookies.get('token')
-    user_id = request.cookies.get('user_id')
-    if token != None and user_id != None:
+    if 'token' in request.cookies and 'user_id' in request.cookies:
         return True
-    
+
     return False
 
 def hash_password(plain):

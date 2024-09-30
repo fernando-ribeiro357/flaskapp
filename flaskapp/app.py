@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from api.auth import blueprint as auth
 from api.profile import blueprint as profile
 from frontend.views import blueprint as views
+from frontend.todolist import blueprint as todolist
 
 logging.config.fileConfig('logging.ini')
 
@@ -21,6 +22,7 @@ app = Flask(__name__)
 app.register_blueprint(auth)
 app.register_blueprint(profile)
 app.register_blueprint(views)
+app.register_blueprint(todolist)
 app.secret_key = getenv('SECRET_KEY')
 
 if __name__ == '__main__':
