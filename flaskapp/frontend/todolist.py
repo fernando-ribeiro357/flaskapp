@@ -34,7 +34,7 @@ def get_add_tasks():
     if request.method == 'POST':
         task_data = {'task': request.form.get('task')}
         task = dict(task_data)
-        db.tasks.insert_one(task)
+        db.tasks.insert_one(task_data)
         message="Tarefa inserida na lista"
         flash(message)
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
