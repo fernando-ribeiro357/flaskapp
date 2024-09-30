@@ -36,14 +36,12 @@ def get_add_tasks():
         task = dict(task_data)
         db.tasks.insert_one(task_data)
         message="Tarefa inserida na lista"
-        flash(message)
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
         response = make_response(redirect('/tasks/add_get'))
         return response
 
     tarefas = [{'id':u['_id'],'task': u['task']} for u in db.tasks.find()]
     message="Carregou a lista de tarefas"
-    flash(message)
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     return render_template('tasks.html',tasklist=tarefas,l=len(tarefas))
 
@@ -78,7 +76,6 @@ def remove_task():
 
 
     message = f"Tarefa id {task_id} apagada"
-    flash(message)
     current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
     response = make_response(redirect('/tasks/add_get'))
     return response
