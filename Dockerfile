@@ -19,4 +19,4 @@ ENV FLASK_APP=./
 ENV FLASK_RUN_PORT=8000
 # ENV FLASK_ENV=development
 
-CMD ["flask","run"]
+CMD ["flask","run","--debug"]
