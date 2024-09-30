@@ -7,7 +7,8 @@ RUN pip install -r /tmp/requirements.txt
 
 ADD ./flaskapp /opt/app
 
-# RUN mkdir /opt/app/logs
+RUN mkdir /opt/app/logs && touch /opt/app/logs/log.json
+
 
 WORKDIR /opt/app
 
