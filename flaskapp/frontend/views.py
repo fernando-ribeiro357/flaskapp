@@ -70,7 +70,7 @@ def login():
         
         if resposta.get('ACK'):
             token = resposta.get('token')
-            response = make_response(redirect("/profile"))
+            response = make_response(redirect("/tasks"))
             response.headers['Authorization'] = f"Bearer {token}"
             response.set_cookie(key='token', value=token, httponly=True)
             response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
