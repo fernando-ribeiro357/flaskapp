@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.11
 
 COPY ./requirements-dev.txt /tmp/requirements.txt
 RUN pip install --upgrade pip

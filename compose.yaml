@@ -3,7 +3,7 @@ services:
     # image: fernandoribeiro357/flaskapp:dev
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      # dockerfile: dev.Dockerfile
     ports:
       - 8000:8000
     environment:
