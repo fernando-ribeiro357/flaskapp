@@ -4,11 +4,7 @@ COPY ./requirements-dev.txt /tmp/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 
-
 ADD ./flaskapp /opt/app
-
-# Criação do diretório de logs
-RUN [ -d /opt/app/logs ] || mkdir /opt/app/logs 
 
 WORKDIR /opt/app
 

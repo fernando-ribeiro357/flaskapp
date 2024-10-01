@@ -60,7 +60,7 @@ def login():
                         json=payload,
                         cookies=request.cookies)
             resposta = get_auth.json()
-
+            
         except Exception as e:
             message = f'erro login: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -70,13 +70,14 @@ def login():
         
         if resposta.get('ACK'):
             token = resposta.get('token')
-            user = resposta.get('user')
-            return jsonify(user)
-            # response = make_response(redirect("/tasks/add_get"))
-            # response.headers['Authorization'] = f"Bearer {token}"
-            # response.set_cookie(key='token', value=token, httponly=True)
-            # response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
-            # return response
+            # user = resposta.get('user')
+            
+            response = make_response(redirect("/tasks/add_get"))
+            response.headers['Authorization'] = f"Bearer {token}"
+            response.set_cookie(key='token', value=token, httponly=True)
+            response.set_cookie(key='user_name', value=resposta.get('user_name'), httponly=True)
+            response.set_cookie(key='user_id', value=payload.get('username'), httponly=True)
+            return response
         else:
             message = resposta.get('message')
             flash(message)
@@ -155,13 +156,9 @@ def get_profiles():
         response = make_response(redirect("/"))
         return response
     
-    
-    user_id = request.cookies.get('user_id')
-    sysadmin = is_sysadmin(user_id)
     message = "Carregou dados de perfis"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    return render_template('profiles.html',context=profiles.get('data'),sysadmin=sysadmin)
-
+    return render_template('profiles.html',context=profiles.get('data'),sysadmin = is_sysadmin(request.cookies.get('user_id')))
 
 
 @blueprint.route("/user_profile", methods = ['GET'])
@@ -170,7 +167,7 @@ def get_profiles():
 def get_profile_user():
     # requisitar um token de acesso
     try:
-        user_id = request.args.get('user_id')
+        user_id = request.args.get('username')
         token = request.cookies.get('token')
         if user_id == None:
             message = 'Parâmetro não fornecido'
@@ -195,7 +192,7 @@ def get_profile_user():
         response = make_response(redirect("/"))
         return response
     
-    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados de perfis")
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: carregou dados do perfil")
     return render_template('profile_update.html',context=profile_data.get('data')[0],sysadmin=is_sysadmin(request.cookies.get('user_id')))
 
 
@@ -248,53 +245,45 @@ def profile_insert():
     return render_template('profile_insert.html',sysadmin=is_sysadmin(request.cookies.get('user_id')))
     
 
-@blueprint.route("/profile_update",methods=['POST','GET'])
+@blueprint.route("/profile_update",methods=['POST'])
 @token_required
 @sysadmin_owner_required
 def profile_update():
-    if request.method == 'POST':
     # requisitar um token de acesso
-        try:
-            cookies=request.cookies
-            token = cookies.get('token')
+    try:
+        cookies=request.cookies
+        token = cookies.get('token')
+        
+        date = datetime.now()
             
-            date = datetime.now()
-                
-            user_data = {
-                'name': request.form.get('name'),
-                'username': request.form.get('username'),
-                'profile': request.form.get('profile'),
-                'updated_at': date.strftime("%Y-%m-%d %H:%M:%S")
-            }
-            passwd = request.form.get('password')
-            if passwd != "":
-                user_data['password'] = hash_password(passwd)
+        user_data = {
+            'name': request.form.get('name'),
+            'username': request.form.get('username'),
+            'profile': request.form.get('profile'),
+            'updated_at': date.strftime("%Y-%m-%d %H:%M:%S")
+        }
+        passwd = request.form.get('password')
+        if passwd != None or passwd != "":
+            user_data['password'] = hash_password(passwd)
 
-            # requisição para uma api que forneça os dados de profile
-            resposta_profile = requests.patch(
-                f"{getenv('APP_URL')}/api/v1/update_profile", 
-                headers={'Authorization': f'Bearer {token}'},
-                cookies=request.cookies,
-                json=user_data)
+        # requisição para uma api que forneça os dados de profile
+        resposta_profile = requests.patch(
+            f"{getenv('APP_URL')}/api/v1/update_profile", 
+            headers={'Authorization': f'Bearer {token}'},
+            cookies=request.cookies,
+            json=user_data)
+    
+        # formatar os dados recebidos
+        profile_data = resposta_profile.json()    
         
-            # formatar os dados recebidos
-            profile_data = resposta_profile.json()    
-            
-            
-        except Exception as e:
-            message = f'erro update: {e}'
-            current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-            response = make_response(redirect("/"))
-            return response
         
-        current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: Atualizou o perfil {profile_data}")
-        response = make_response(redirect("/profiles"))
+    except Exception as e:
+        message = f'erro update: {e}'
+        current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
+        response = make_response(redirect("/"))
         return response
-        # return jsonify(profile_data)
-
-    username = request.args.get("user_id")
-    db = get_conn('pessoa')
-    user = db.users.find({'username': username})    
-    response = render_template('profile_update.html',context=user,sysadmin=is_sysadmin(username))
-    response.headers['Content-Type'] = "text/html"
+    
+    current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: Atualizou o perfil {profile_data}")
+    response = make_response(redirect("/profiles"))
     return response
+

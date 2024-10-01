@@ -3,6 +3,7 @@ import logging.config
 from passlib.hash import pbkdf2_sha256
 from flask import (Blueprint, 
                    jsonify,
+                   json,
                    request, 
                    current_app,
                    flash,
@@ -37,10 +38,8 @@ def auth():
             } for u in db.users.find({'username': username,'deleted_at': None})
         ]
 
-    # validar dados
-
+        # validar dados
         credentialIsValid = pbkdf2_sha256.verify(password, user[0].get('password'))
-
 
     except IndexError:
         message = "Usuário ou senha inválidos"
@@ -51,26 +50,16 @@ def auth():
         })
     
     if credentialIsValid:
-        message = f"{username} realizou login com sucesso"
+        message = f"{user[0].get('name')} realizou login com sucesso"
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        gen_token = generate_token(username)
-        return jsonify(get_token.json())
-        # resposta = gen_token.json()
-        # if resposta.get('ACK') != False:
-        #     resposta['message'] = f"{message}: {resposta.get('message')}"
-        #     return resposta
-
-        # response = make_response(jsonify({
-        #     'ACK': True,
-        #     'message': message,
-        #     'user':{'name':user[0].get('name'), 'username': user[0].get('username') },
-        #     'token': resposta.get('token')
-        # }))
-
-        # response.set_cookie(key='user_name', value='banana', httponly=True)
-        # response.set_cookie(key='user_id', value=username, httponly=True)
-        # response.set_cookie(key='token', value=token, httponly=True)
-        # return response
+        token = generate_token(username)
+        response = make_response(jsonify({
+                'ACK': True,
+                'user_name': user[0].get('name'),
+                'token': token
+            }))
+        return response
+        
         
     current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: Usuário ou senha inválidos")
     return jsonify({

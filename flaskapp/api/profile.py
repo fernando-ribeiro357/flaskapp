@@ -95,7 +95,6 @@ def get_profile_data():
 
 @blueprint.route("/update_profile", methods = ["PATCH"])
 @token_required
-@sysadmin_owner_required
 def update_profile():
     user_id = request.cookies.get('user_id')
     try:        

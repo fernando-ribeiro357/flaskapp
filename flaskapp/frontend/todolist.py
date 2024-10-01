@@ -16,8 +16,7 @@ from flask import ( Blueprint,
 
 from api.auth import is_logged, hash_password
 from extensions.token_utils import token_required
-from extensions.access_control import  (sysadmin_required,
-                                        sysadmin_owner_required, 
+from extensions.access_control import  (sysadmin_required, 
                                         is_sysadmin)
 
 blueprint = Blueprint(
@@ -43,7 +42,7 @@ def get_add_tasks():
     tarefas = [{'id':u['_id'],'task': u['task']} for u in db.tasks.find()]
     message="Carregou a lista de tarefas"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    return render_template('tasks.html',tasklist=tarefas,l=len(tarefas))
+    return render_template('tasks.html',tasklist=tarefas,l=len(tarefas),sysadmin = is_sysadmin(request.cookies.get('user_id')))
 
 
 # Function to clear the to-do list

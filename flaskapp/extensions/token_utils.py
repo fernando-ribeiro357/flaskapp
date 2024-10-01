@@ -47,15 +47,13 @@ def token_required(fn):
             message = 'Erro ao decodificar o token'
             current_app.logger.warning(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             flash(message)
-            retorno = make_response(redirect('/'))
-            return retorno
+            return make_response(redirect('/'))
 
         except Exception as e:
             message = f'Erro token: {e}'
             current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
             flash(message)
-            retorno = make_response(redirect('/'))
-            return retorno
+            return make_response(redirect('/'))
             
         message = 'Token OK.'
         current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
@@ -78,18 +76,12 @@ def generate_token(user_id):
     except Exception as e:
         message = f'Erro ao gerar o token: {e}'
         current_app.logger.critical(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-        return jsonify({
-            'ACK': False,
-            'message':message
-        })
-
+        flash(message)
+        return make_response(redirect('/'))
+    
     message = f"Token gerado para {user_id}"
     current_app.logger.info(f"{request.remote_addr.__str__()} - {__name__}: {message}")
-    return jsonify({
-            'ACK': True,
-            'message':message,
-            'token': token
-        })
+    return token
     
 
 
