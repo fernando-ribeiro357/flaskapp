@@ -25,8 +25,8 @@ blueprint = Blueprint(
     url_prefix='/tasks')
 
 # Function to add a task to the to-do list and show tasks
-@token_required
 @blueprint.route('/add_get',methods=['GET','POST'])
+@token_required
 def get_add_tasks():
     
     db = get_conn('todolist')

@@ -22,6 +22,7 @@ from extensions.access_control import  (sysadmin_required,
 blueprint = Blueprint('views', __name__)
 
 @blueprint.route("/sair",methods = ['GET'])
+@token_required
 def sair():
     flash("Usuário deslogado!")
     response = make_response(redirect("/"))
