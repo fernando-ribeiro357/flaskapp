@@ -12,8 +12,6 @@ services:
       - JWT_SECRET=c04575fffdd07e3b5f6dfc9401bbf780c20eed9c
       - SECRET_KEY=Wievievae5fa3eig5eaWaichooQuah4k
       - APP_URL=http://localhost:8000
-      - MONGO_ROOT_USERNAME=root
-      - MONGO_ROOT_PASSWORD=root-passwd
       - MONGO_URL=mongodb://root:root-passwd@mongo-server:27017/
     volumes:
       - ./flaskapp:/opt/app
