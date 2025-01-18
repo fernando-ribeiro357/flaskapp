@@ -1,8 +1,6 @@
 services:
   flaskapp:
-    # image: fernandoribeiro357/flaskapp:latest
-    build:
-      context: .
+    image: fernandoribeiro357/flaskapp:latest
     ports:
       - 8000:8000
     environment:
