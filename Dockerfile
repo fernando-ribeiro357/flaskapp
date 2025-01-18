@@ -1,8 +1,8 @@
 FROM python:3.11-alpine
 
-COPY ./requirements-dev.txt /tmp/requirements.txt
-RUN pip install --upgrade pip
-RUN pip install -r /tmp/requirements.txt
+COPY requirements.txt /tmp/
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r /tmp/requirements.txt
 
 ADD ./flaskapp /opt/app
 
