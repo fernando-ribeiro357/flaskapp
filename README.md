@@ -1,3 +1,3 @@
 ## FLASK APP
 
-Aplicação para estudar Flask e Python
+Aplicação para estudar Flask e Python.
