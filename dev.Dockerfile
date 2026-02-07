@@ -8,6 +8,9 @@ ADD ./flaskapp /opt/app
 
 WORKDIR /opt/app
 
+# Criação do diretório de logs
+RUN [ -d /opt/app/logs ] || mkdir /opt/app/logs
+
 EXPOSE 8000
 
 ENV FLASK_RUN_HOST=0.0.0.0

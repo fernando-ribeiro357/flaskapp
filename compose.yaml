@@ -1,6 +1,9 @@
 services:
   flaskapp:
-    image: fernandoribeiro357/flaskapp:latest
+    # image: fernandoribeiro357/flaskapp:latest
+    build:
+     context: .
+     dockerfile: dev.Dockerfile
     ports:
       - 8000:8000
     environment:
